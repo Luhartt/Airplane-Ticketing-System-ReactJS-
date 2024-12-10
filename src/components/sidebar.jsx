@@ -1,8 +1,12 @@
 
 function sidebar() {
   return (
-    <p>Hello World</p>
+    <div>
+      
+    </div>
   )
 }
 
 export default sidebar;
+
+
