@@ -4,16 +4,24 @@ import DashboardIcon from "../Dependencies/iconDashboard.png";
 import BookFlights from "../Dependencies/iconFlightBooking.png";
 import ViewBookings from "../Dependencies/iconViewBookings.png";
 import Account from "../Dependencies/iconProfile.png";
+import LogoHeader from "../Dependencies/LogoWithName.png"
 
 function Sidebar() {
 
-  const[active, setActive] = useState(null);
+  const[active, setActive] = useState();
+  const[header, setHeader] = useState("Test");
 
-    const handleClick = (index) => {
+    const handleClick = (index, label) => {
       setActive(index)
+      setHeader(label)
     }
 
   return (
+    <>
+    <header>
+      <img src={LogoHeader} alt="LogoHeader" />
+      <p>{header}</p>
+    </header>
     <aside>
       {[
         {icon: DashboardIcon, label: "Flights"},
@@ -24,14 +32,14 @@ function Sidebar() {
         <div
           key={index}
           className = {`sidebar-item-${active === index ? "active" : ""}`}
-          onClick = {() => handleClick(index)}
+          onClick = {() => handleClick(index, item.label)}
         >
         <img src={item.icon} alt = 'icon'/>
         {item.label}
         </div>
       ))}
     </aside>
-
+    </>
   );
 }
 export default Sidebar;

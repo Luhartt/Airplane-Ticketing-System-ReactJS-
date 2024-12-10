@@ -1,50 +1,71 @@
 @font-face {
-    font-family: "Kantumruy Pro Bold";
-    src: url(../Dependencies/Fonts/KantumruyPro-Bold.ttf) format("truetype");
-  }
-  @font-face {
-    font-family: "Kantumruy Pro Regular";
-    src: url(../Dependencies/Fonts/KantumruyPro-Regular.ttf) format("truetype");
-  }
-  @font-face {
-    font-family: "Kantumruy Pro SemiBold";
-    src: url(../Dependencies/Fonts/KantumruyPro-SemiBold.ttf) format("truetype");
-  }
-  @font-face {
-    font-family: "Kantumruy Pro Medium";
-    src: url(../Dependencies/Fonts/KantumruyPro-Medium.ttf) format("truetype");
-  }
-
-
-aside{
-    height: 100vh;
-    width: 35vh;
-    display: grid;
-    grid-template-rows: repeat(4, 1fr);
+  font-family: "Kantumruy Pro Bold";
+  src: url(../Dependencies/Fonts/KantumruyPro-Bold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Kantumruy Pro Regular";
+  src: url(../Dependencies/Fonts/KantumruyPro-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Kantumruy Pro SemiBold";
+  src: url(../Dependencies/Fonts/KantumruyPro-SemiBold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Kantumruy Pro Medium";
+  src: url(../Dependencies/Fonts/KantumruyPro-Medium.ttf) format("truetype");
 }
 
-aside>div{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-family: "Kantumruy Pro Bold";
-    font-size: 20px;
-    color: darkgray;
-    border-right: 7px solid transparent;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header>img{
+  height: 70%;
+}
+
+header>p{
+  width: auto;
+  text-align: center;
 
 }
 
-aside>div:hover{
-    background-color: #F4F3FF;
-    border-right: 7px solid #A780F4
+aside {
+  height: 80vh;
+  width: 35vh;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
 }
 
-aside>div>img{
-    margin-block: 20px;
+aside > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Kantumruy Pro Bold";
+  font-size: 20px;
+  color: darkgray;
+  border-right: 7px solid transparent;
 }
 
-.sidebar-item-active{
-    background-color: #F4F3FF;
-    border-right: 7px solid #A780F4
+aside > div:hover {
+  background-color: #f4f3ff;
+  border-right: 7px solid #a780f4;
+}
+
+aside > div > img {
+  margin-block: 20px;
+}
+
+.sidebar-item-active {
+  background-color: #f4f3ff;
+  border-right: 7px solid #a780f4;
 }
