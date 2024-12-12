@@ -5,6 +5,7 @@ import BookFlights from "../Dependencies/iconFlightBooking.png";
 import ViewBookings from "../Dependencies/iconViewBookings.png";
 import Account from "../Dependencies/iconProfile.png";
 import LogoHeader from "../Dependencies/LogoWithName.png"
+import LogoutIcon from "../Dependencies/LogoutICON.png"
 
 function Sidebar() {
 
@@ -21,6 +22,10 @@ function Sidebar() {
     <header>
       <img src={LogoHeader} alt="LogoHeader" />
       <p>{header}</p>
+      <div>
+        <img src={LogoutIcon} alt="Logout" />
+        Logout
+      </div>
     </header>
     <aside>
       {[

@@ -22,11 +22,34 @@
 }
 
 header {
+  padding-inline: 3vw;
   height: 20vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
+header>div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5vw;
+  font-family: "Kantumruy Pro Bold";
+  font-size: 1.5rem;
+  color: #5C5C5C;
+}
+
+header>div:hover{
+  background-color: #9496A5;
+
+}
+
+header>p{
+  font-family: "Kantumruy Pro Bold";
+  color: #9496A5;
+  font-size: 3rem;
+}
+
 
 header>img{
   height: 70%;
@@ -35,7 +58,6 @@ header>img{
 header>p{
   width: auto;
   text-align: center;
-
 }
 
 aside {
@@ -51,8 +73,8 @@ aside > div {
   justify-content: center;
   flex-direction: column;
   font-family: "Kantumruy Pro Bold";
-  font-size: 20px;
-  color: darkgray;
+  font-size: 1.5rem;
+  color: #9496A5;
   border-right: 7px solid transparent;
 }
 
