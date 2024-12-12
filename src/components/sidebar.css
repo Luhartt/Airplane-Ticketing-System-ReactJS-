@@ -1,19 +1,4 @@
-@font-face {
-  font-family: "Kantumruy Pro Bold";
-  src: url(../Dependencies/Fonts/KantumruyPro-Bold.ttf) format("truetype");
-}
-@font-face {
-  font-family: "Kantumruy Pro Regular";
-  src: url(../Dependencies/Fonts/KantumruyPro-Regular.ttf) format("truetype");
-}
-@font-face {
-  font-family: "Kantumruy Pro SemiBold";
-  src: url(../Dependencies/Fonts/KantumruyPro-SemiBold.ttf) format("truetype");
-}
-@font-face {
-  font-family: "Kantumruy Pro Medium";
-  src: url(../Dependencies/Fonts/KantumruyPro-Medium.ttf) format("truetype");
-}
+
 
 *{
   margin: 0;

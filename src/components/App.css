@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Main{
+    display: grid;
+    grid-template-columns: 0.2fr 1fr;
+}
+
+.Main>Header{
+    grid-area: 1 / 1 / 2 / 3;
+}
+.Main>Aside{
+    grid-area: 2 / 1 / 3 / 2;
+}
+.Main>.MainSection{
+    grid-area: 2 / 2 / 3 / 3;
+}
+.MainSection{
+    background-color: darkgray;
+    padding: 5vmin;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items:flex-start; */
+}

@@ -1,0 +1,24 @@
+
+
+.Flight{
+    display: flex;
+    width: 50vw;
+    font-family: "Kantumruy Pro Semibold";
+}
+
+.Flight>div{
+    text-align: center;
+}
+
+.Flight>div>p{
+    color: #9F8FFF;
+}
+
+.Flight>img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-inline: 7%;
+}
+
+
