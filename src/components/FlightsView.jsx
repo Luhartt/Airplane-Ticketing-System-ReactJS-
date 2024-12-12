@@ -3,22 +3,15 @@ import Flight from "./Flight";
 import "../Dependencies/Fonts/Fonts.css";
 import "./FlightsView.css";
 
-export default function Flights() {
-  const sampleFlight = {
-    DepartureLocation: "ORD",
-    DepartureTime: "19:00",
-    ArrivalLocation: "JFK",
-    ArrivalTime: "20:00",
-  };
+export default function Flights({FlightData}) {
   return (
     <div className="FlightsView">
       <div>
-        <p>FlightNumber</p>
-        <p>DepartureDate</p>
+        <p>{FlightData.AirplaneNumber}</p>
+        <p>{FlightData.DepartureDate}</p>
       </div>
       <div>
-        <Flight FlightData={sampleFlight}></Flight>
-        
+        <Flight FlightData={FlightData.FlightData}></Flight>
         <button>View</button>
       </div>
     </div>
