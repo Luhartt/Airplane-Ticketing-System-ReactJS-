@@ -1,5 +1,5 @@
 import Flights from "./FlightsView";
-import "./FlightsDashboard.css";
+import "./ViewBookings.css";
 import "../Dependencies/Fonts/Fonts.css";
 import { useState } from "react";
 
@@ -15,23 +15,18 @@ export default function FlightsDashboard() {
     },
   };
 
-  const [Active, setActive] = useState(0);
-  const handleClick = (index) => {
-    setActive(index);
-  };
+  const [Sort, setSort] = useState("Oldest");
+
+  const handleClick = (sort) => {
+    setSort(sort === "Oldest" ? "Newest" : "Oldest");
+    };
 
   return (
-    <section className="FlightsDashboard">
+    <section className="ViewBooking">
       <div className="ButtonsContainer">
-        {["All", "Local", "International"].map((item, index) => (
-          <button
-            key={index}
-            className={`Button${Active === index ? "-Active" : ""}`}
-            onClick={() => handleClick(index)}
-          >
-            {item}
-          </button>
-        ))}
+        <button className={`Button${Sort}`} onClick={()=>handleClick(Sort)}>
+            {`${Sort} First`}
+        </button>
       </div>
       <Flights FlightData={sampleFlight}></Flights>
       <Flights FlightData={sampleFlight}></Flights>

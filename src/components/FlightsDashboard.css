@@ -1,0 +1,44 @@
+.FlightsDashboard{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.ButtonsContainer{
+    justify-self: left;
+    margin-left: 10rem;
+    display: flex;
+    gap: 1rem;
+}
+.Button-Active{
+    background-color: #763AEE;
+    color: white;
+    width: fit-content;
+    padding: 2.5vmin 5vmin;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-block: 1.5rem;
+    font-family: "Kantumruy Pro Semibold";
+    font-size: 1rem;
+}
+
+
+.ButtonsContainer>button:hover{
+    background-color: #c3adee;
+}
+
+.Button{
+    width: fit-content;
+    padding: 2.5vmin 5vmin;
+    background-color: rgb(230, 233, 240);
+    color: black;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-block: 1.5rem;
+    font-family: "Kantumruy Pro Semibold";
+    font-size: 1rem;
+}
