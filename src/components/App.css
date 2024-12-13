@@ -22,8 +22,13 @@
     height: 80vh;
     overflow: scroll;
     background-color: darkgray;
-    padding: 10vmin;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+}
+
+div.ContentPanel{
+    height: 90%;
+    width: 90%;
+    background-color: white;
 }
