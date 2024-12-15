@@ -23,8 +23,8 @@ db.connect((err) => {
 
 app.get("/FlightsDashboard", (req, res) => {
   const query = `
-SELECT Flights.DepartureDate, Flights.ArrivalDate, Flights.AirplaneNumber, Flights.FlightID,
-ArrivalAirport.AirportCode AS ArrivalAirportCode, DepartureAirport.AirportCode AS DepartureAirportCode
+SELECT Flights.DepartureDate, Flights.ArrivalDate, Flights.AirplaneNumber, Flights.FlightID, 
+ArrivalAirport.AirportCode AS ArrivalAirportCode, DepartureAirport.AirportCode AS DepartureAirportCode, Flights.Type
 FROM flights
 JOIN Airport AS DepartureAirport ON Flights.DepartureAirportID = DepartureAirport.AirportID
 JOIN Airport AS ArrivalAirport ON Flights.ArrivalAirportID = ArrivalAirport.AirportID
@@ -34,7 +34,6 @@ ORDER BY Flights.DepartureDate ASC;
     db.query(query, (err, results) => {
         if(err) res.status(500).json({error:err});
         res.json(results)
-        console.log(res);
     })
 });
 

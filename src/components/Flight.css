@@ -3,6 +3,7 @@
 .Flight{
     display: flex;
     width: 50vw;
+    font-size: 1.5rem;
     font-family: "Kantumruy Pro Semibold";
 }
 
@@ -11,7 +12,9 @@
 }
 
 .Flight>div>p{
+    font-size: 1rem;
     color: #9F8FFF;
+
 }
 
 .Flight>img{
