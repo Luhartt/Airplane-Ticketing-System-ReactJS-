@@ -3,7 +3,7 @@ import "./FlightsDashboard.css";
 import "../Dependencies/Fonts/Fonts.css";
 import { useState } from "react";
 
-export default function FlightsDashboard() {
+function FlightsDashboard() {
   const sampleFlight = {
     AirplaneNumber: "AB123",
     DepartureDate: "December 09, 2024",
@@ -21,21 +21,25 @@ export default function FlightsDashboard() {
   };
 
   return (
-    <section className="FlightsDashboard">
-      <div className="ButtonsContainer">
-        {["All", "Local", "International"].map((item, index) => (
-          <button
-            key={index}
-            className={`Button${Active === index ? "-Active" : ""}`}
-            onClick={() => handleClick(index)}
-          >
-            {item}
-          </button>
-        ))}
-      </div>
-      <Flights FlightData={sampleFlight}></Flights>
-      <Flights FlightData={sampleFlight}></Flights>
-      <Flights FlightData={sampleFlight}></Flights>
-    </section>
+    <>
+      <section className="FlightsDashboard">
+        <div className="ButtonsContainer">
+          {["All", "Local", "International"].map((item, index) => (
+            <button
+              key={index}
+              className={`Button${Active === index ? "-Active" : ""}`}
+              onClick={() => handleClick(index)}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+        <Flights FlightData={sampleFlight}></Flights>
+        <Flights FlightData={sampleFlight}></Flights>
+        <Flights FlightData={sampleFlight}></Flights>
+      </section>
+    </>
   );
 }
+
+export default FlightsDashboard;

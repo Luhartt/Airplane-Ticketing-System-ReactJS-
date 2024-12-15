@@ -3,7 +3,7 @@ import "./ViewBookings.css";
 import "../Dependencies/Fonts/Fonts.css";
 import { useState } from "react";
 
-export default function FlightsDashboard() {
+function ViewBookings() {
   const sampleFlight = {
     AirplaneNumber: "AB123",
     DepartureDate: "December 09, 2024",
@@ -34,3 +34,4 @@ export default function FlightsDashboard() {
     </section>
   );
 }
+export default ViewBookings;
