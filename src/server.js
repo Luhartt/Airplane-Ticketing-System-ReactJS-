@@ -31,13 +31,44 @@ JOIN Airport AS ArrivalAirport ON Flights.ArrivalAirportID = ArrivalAirport.Airp
 WHERE flights.DepartureDate >= NOW()
 ORDER BY Flights.DepartureDate ASC;
     `;
-    db.query(query, (err, results) => {
-        if(err) res.status(500).json({error:err});
-        res.json(results)
-    })
+  db.query(query, (err, results) => {
+    if (err) res.status(500).json({ error: err });
+    res.json(results);
+  });
 });
 
+app.get("/ViewBookings", (req, res) => {
+  const query = `SELECT Flights.DepartureDate, Flights.ArrivalDate, Flights.AirplaneNumber, Flights.FlightID, 
+       ArrivalAirport.AirportCode AS ArrivalAirportCode, 
+       DepartureAirport.AirportCode AS DepartureAirportCode, 
+       Transactions.BookingDate,
+       Transactions.TransactionID 
+FROM Flights 
+JOIN TicketDetails ON Flights.FlightID = TicketDetails.FlightID 
+JOIN Airport AS DepartureAirport ON Flights.DepartureAirportID = DepartureAirport.AirportID 
+JOIN Airport AS ArrivalAirport ON Flights.ArrivalAirportID = ArrivalAirport.AirportID 
+JOIN Transactions ON Transactions.TransactionID = TicketDetails.TransactionID 
+JOIN Accounts ON Transactions.AccountID = Accounts.AccountID
+WHERE Accounts.AccountID = 3;
+  `;
+  db.query(query, (err,results) => {
+    if (err) res.status(500).json({error:err});
+    res.json(results);
+  });
+});
+
+async function queryDepartureDates(){
+  try{
+    const query = `
+    `
+  }catch(error){
+    console.err(error);
+  }
+}
+
 const PORT = 5000;
-app.listen(PORT, ()=>{
-    console.log(`Server is running on http://localhost:${PORT}`);
-})
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+

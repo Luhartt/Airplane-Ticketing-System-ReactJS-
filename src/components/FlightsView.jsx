@@ -3,7 +3,7 @@ import Flight from "./Flight";
 import "../Dependencies/Fonts/Fonts.css";
 import "./FlightsView.css";
 
-export default function Flights({FlightData}) {
+export default function Flights({FlightData, onButtonClick}) {
   return (
     <div className="FlightsView">
       <div>
@@ -12,7 +12,7 @@ export default function Flights({FlightData}) {
       </div>
       <div>
         <Flight FlightData={FlightData.FlightData}></Flight>
-        <button>View</button>
+        <button onClick={onButtonClick}>View</button>
       </div>
     </div>
   );
