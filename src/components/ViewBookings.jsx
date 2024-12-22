@@ -61,7 +61,10 @@ function ViewBookings() {
   };
 
   useEffect(() => {
-    fetchData();
+    const fetchWrapper = async () => {
+      await fetchData();
+    }
+    fetchWrapper();
   }, []);
 
   return (

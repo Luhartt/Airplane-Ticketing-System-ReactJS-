@@ -5,6 +5,7 @@ import BookFlights from "./BookFlight/BookFlight";
 import Profile from "./Profile";
 import "./App.css";
 import { useState } from "react";
+import { Router, Route } from "react-router";
 
 export default function App() {
   const [ActiveTab, setActiveTab] = useState(() => FlightsDashboard);
@@ -28,6 +29,9 @@ export default function App() {
         />
         <section className="MainSection">
           <div className="ContentPanel">
+            {/* <Router> */}
+              {/* <Route path = {`./${ActiveTab}`} component = {ActiveTab}/> */}
+            {/* </Router> */}
             <ActiveTab></ActiveTab>
           </div>
         </section>

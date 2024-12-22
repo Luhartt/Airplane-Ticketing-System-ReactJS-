@@ -51,7 +51,10 @@ function FlightsDashboard() {
   };
 
   useEffect(() => {
-    fetchData();
+    const fetchWrapper = async () => {
+      await fetchData();
+    }
+    fetchWrapper();
   }, []);
 
   return (
