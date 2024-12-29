@@ -15,7 +15,7 @@ function SidebarHeader({ Tabs, onTabChange }) {
   const handleClick = (index, label) => {
     setActive(index);
     setHeader(label.toUpperCase());
-    onTabChange(Tabs[index]);
+    onTabChange(Tabs[index].component);
   };
 
   return (

@@ -5,15 +5,23 @@ import BookFlights from "./BookFlight/BookFlight";
 import Profile from "./Profile";
 import "./App.css";
 import { useState } from "react";
-import { Router, Route } from "react-router";
+// import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
 export default function App() {
   const [ActiveTab, setActiveTab] = useState(() => FlightsDashboard);
-  const Tabs = [FlightsDashboard, BookFlights, ViewBookings, Profile];
+  // const Tabs = [FlightsDashboard, BookFlights, ViewBookings, Profile];
+
+  const Tabs = [
+    {component: FlightsDashboard, url: "./FlightsDashboard.jsx"},
+    {component: BookFlights, url: "./BookFlights.jsx"},
+    {component: ViewBookings, url: "./ViewBookings.jsx"},
+    {component: Profile, url: "./Profile.jsx"}
+  ]
+
 
   const handleTabChange = (component) => {
     if (typeof component === "function") {
-      setActiveTab(() => component); // Correctly set component reference
+      setActiveTab(() => component);
     } else {
       console.error("Invalid component passed to handleTabChange:", component);
     }
