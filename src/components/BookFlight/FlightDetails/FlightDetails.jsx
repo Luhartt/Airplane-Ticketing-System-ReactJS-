@@ -1,12 +1,9 @@
 import RoundTrip from "./RoundTrip";
 import OneWay from "./OneWay";
 import { Routes, Route, useNavigate } from "react-router";
-import { useState } from "react";
 
-export default function FlightDetails() {
+export default function FlightDetails(setType, Data, setData) {
   const navigate = useNavigate();
-  const [Type, setType] = useState();
-  const [Data, setData] = useState({});
 
   const BookFlightsNav = () => {
     navigate("OneWay");
