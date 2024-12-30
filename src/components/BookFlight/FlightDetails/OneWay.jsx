@@ -1,9 +1,8 @@
-import { useState } from "react";
 import "./OneWay.css";
 
 import ComboBox from "./ComboBox";
 
-export default function OneWay(data, setData) {
+export default function OneWay({data, setData}) {
   const Flights = [
     "Manila",
     "Cebu",
@@ -17,11 +16,26 @@ export default function OneWay(data, setData) {
   ];
 
   return (
-    <ComboBox
-      options={Flights}
-      setData={setData}
-      data={data}
-      keyName="DepartureLocation"
-    ></ComboBox>
+    <>
+      <form action="">
+        <fieldset>
+          <label> From </label>
+          <ComboBox
+            options={Flights}
+            setData={setData}
+            data={data}
+            keyName="Departure Location"
+          ></ComboBox>
+          <hr />
+          <label> To </label>
+          <ComboBox
+            options={Flights}
+            setData={setData}
+            data={data}
+            keyName="Departure Location"
+          ></ComboBox>
+        </fieldset>
+      </form>
+    </>
   );
 }

@@ -1,18 +1,18 @@
 import SidebarHeader from "./sidebar-header";
 import "./App.css";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import FlightsDashboardComponent from "./FlightsDashboard";
-import ViewBookingsComponent from "./ViewBookings";
-import BookFlightsComponent from "./BookFlight/BookFlight";
-import ProfileComponent from "./Profile";
+import FlightsDashboard from "./FlightsDashboard";
+import ViewBookings from "./ViewBookings";
+import BookFlights from "./BookFlight/BookFlight";
+import Profile from "./Profile";
 export default function App() {
   // const Tabs = [FlightsDashboard, BookFlights, ViewBookings, Profile];
 
   const Tabs = [
-    { component: FlightsDashboardComponent, url: "/flights-dashboard" },
-    { component: BookFlightsComponent, url: "/book-flights" },
-    { component: ViewBookingsComponent, url: "view-bookings" },
-    { component: ProfileComponent, url: "/profile" },
+    { component: FlightsDashboard, url: "/flights-dashboard/" },
+    { component: BookFlights, url: "/book-flights/*" },
+    { component: ViewBookings, url: "view-bookings/" },
+    { component: Profile, url: "/profile/" },
   ];
 
   return (

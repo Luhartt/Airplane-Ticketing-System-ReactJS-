@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import ComboBox from "./ComboBox";
 
-export default function RoundTrip(data, setData) {
+export default function RoundTrip({data, setData}) {
   const Flights = [
     "Manila",
     "Cebu",
