@@ -1,10 +1,27 @@
-import ComboBox from "./ComboBox"
-const Flights = ["Manila", "Cebu", "Taguig","Manila", "Cebu", "Taguig","Manila", "Cebu", "Taguig"]
+import { useState } from "react";
 
+import ComboBox from "./ComboBox";
 
+export default function RoundTrip() {
+  const Flights = [
+    "Manila",
+    "Cebu",
+    "Taguig",
+    "Manila",
+    "Cebu",
+    "Taguig",
+    "Manila",
+    "Cebu",
+    "Taguig",
+  ];
+  const [Data, setData] = useState({});
 
-export default function RoundTrip(){
-    return(
-        <ComboBox options={Flights}></ComboBox>
-    );
+  return (
+    <ComboBox
+      options={Flights}
+      setData={setData}
+      data={Data}
+      keyName="DepartureLocation"
+    ></ComboBox>
+  );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import "./sidebar.css";
 import DashboardIcon from "../Dependencies/iconDashboard.png";
 import BookFlights from "../Dependencies/iconFlightBooking.png";
@@ -8,14 +9,15 @@ import LogoHeader from "../Dependencies/LogoWithName.png";
 import LogoutIcon from "../Dependencies/LogoutICON.png";
 import "../Dependencies/Fonts/Fonts.css";
 
-function SidebarHeader({ Tabs, onTabChange }) {
+function SidebarHeader({ Tabs }) {
   const [active, setActive] = useState();
   const [header, setHeader] = useState("Flights");
+  const navigate = useNavigate();
 
   const handleClick = (index, label) => {
     setActive(index);
     setHeader(label.toUpperCase());
-    onTabChange(Tabs[index].component);
+    navigate(Tabs[index].url)
   };
 
   return (
