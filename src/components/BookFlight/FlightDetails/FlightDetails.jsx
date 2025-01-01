@@ -11,7 +11,7 @@ export default function FlightDetails({ setType, data, setData }) {
 
   return (
     <div>
-      <button onClick={BookFlightsNav}>Test</button>
+      <button onClick={BookFlightsNav} style={{position: "absolute"}}>Test</button>
       <Routes>
         <Route path="one-way" element={<OneWay data={data} setData={setData} />} />
         <Route path="round-trip" element={<RoundTrip data={data} setData={setData} />} />
