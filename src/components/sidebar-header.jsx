@@ -8,6 +8,8 @@ import Account from "../Dependencies/iconProfile.png";
 import LogoHeader from "../Dependencies/LogoWithName.png";
 import LogoutIcon from "../Dependencies/LogoutICON.png";
 import "../Dependencies/Fonts/Fonts.css";
+import "../Dependencies/Colors.css";
+
 
 function SidebarHeader({ Tabs }) {
   const [active, setActive] = useState();

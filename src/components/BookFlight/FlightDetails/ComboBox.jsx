@@ -1,3 +1,5 @@
+import "./ComboBox.css"
+
 export default function ComboBox({ options, setData, keyName, data }) {
   const onSelection = (event) => {
     setData({ ...data, [keyName]: event.target.value });

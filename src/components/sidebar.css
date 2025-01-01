@@ -47,7 +47,7 @@ header>p{
 
 aside {
   height: 80vh;
-  width: 35vh;
+  width: 20vw;
   display: grid;
   grid-template-rows: repeat(4, 1fr);
 }

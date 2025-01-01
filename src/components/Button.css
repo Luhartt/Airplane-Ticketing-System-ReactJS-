@@ -1,0 +1,11 @@
+.CustomButton{
+    background-color: var(--indigo85);
+    width: fit-content;
+    border: none;
+    padding: 1.5rem 3rem;
+    font-family: "Kantumruy Pro SemiBold";
+    color: white;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor:pointer;
+}

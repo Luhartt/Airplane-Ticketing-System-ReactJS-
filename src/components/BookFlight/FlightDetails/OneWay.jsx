@@ -1,5 +1,6 @@
 import "./OneWay.css";
 import ComboBox from "./ComboBox";
+import Button from "../../Button";
 import FlightFly from "../../../Dependencies/flight_takeoff.png";
 import FlightLand from "../../../Dependencies/flight_takeoff.png";
 import Calendar from "../../../Dependencies/calendar_today.png";
@@ -29,7 +30,14 @@ export default function OneWay({ data, setData }) {
 
   const handleTextInput = (e, keyName) => {
     e.preventDefault();
-    setData({ ...data, [keyName]: parseInt(e.target.value, 10) || 0 });
+    const value = parseInt(e.target.value, 10) || 0;
+
+    if (isNaN(value)) {
+      alert("Input a number");
+      setData({ ...data, [keyName]: keyName === "Adult" ? 1 : 0 });
+    } else {
+      setData({ ...data, [keyName]: value });
+    }
   };
 
   const test = () => {
@@ -43,6 +51,7 @@ export default function OneWay({ data, setData }) {
         <fieldset className="Locations">
           <div className="LocationsContainer">
             <p> From </p>
+            <p>Ninoy Aquino International Airport (MNL)</p>
             <img src={FlightFly} alt="Takeoff" />
             <ComboBox
               options={Flights}
@@ -50,11 +59,11 @@ export default function OneWay({ data, setData }) {
               data={data}
               keyName="Departure Location"
             ></ComboBox>
-            <p>Ninoy Aquino International Airport (MNL)</p>
           </div>
           <hr />
           <div className="LocationsContainer">
             <p> To </p>
+            <p>Ninoy Aquino International Airport (MNL)</p>
             <img src={FlightLand} alt="Land" />
             <ComboBox
               options={Flights}
@@ -62,7 +71,6 @@ export default function OneWay({ data, setData }) {
               data={data}
               keyName="Arrival Location"
             ></ComboBox>
-            <p>Ninoy Aquino International Airport (MNL)</p>
           </div>
         </fieldset>
         <fieldset className="DepartureDate">
@@ -104,15 +112,19 @@ export default function OneWay({ data, setData }) {
                 onChange={(event) => handleTextInput(event, item.label)}
                 key={`${item.label} ${index} input`}
                 type="number"
-                min={0}
+                min={item.label === "Adult" ? 1 : 0}
+                max={99}
                 id={item.label}
+                value={data[item.label] || (item.label === "Adult" ? 1 : 0)}
               />
             </div>
           ))}
         </fieldset>
-        <button type="button" onClick={test}>
-          Search Flight
-        </button>
+        <Button
+          text={"SEARCH FLIGHT"}
+          handleClick={test}
+          type={"button"}
+        ></Button>
       </form>
     </>
   );

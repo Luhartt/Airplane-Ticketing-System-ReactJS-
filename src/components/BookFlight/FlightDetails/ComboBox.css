@@ -1,0 +1,8 @@
+.ComboBox select{
+    font-family: Kantumruy Pro Medium;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding-right: 2rem;
+    font-size: 1rem;
+}

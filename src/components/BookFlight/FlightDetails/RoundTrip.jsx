@@ -16,11 +16,6 @@ export default function RoundTrip({data, setData}) {
   ];
 
   return (
-    <ComboBox
-      options={Flights}
-      setData={setData}
-      data={data}
-      keyName="DepartureLocation"
-    ></ComboBox>
+    <p>This is round trip </p>
   );
 }
