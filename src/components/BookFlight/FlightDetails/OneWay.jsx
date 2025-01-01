@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./OneWay.css";
 import ComboBox from "./ComboBox";
 import FlightFly from "../../../Dependencies/flight_takeoff.png";
