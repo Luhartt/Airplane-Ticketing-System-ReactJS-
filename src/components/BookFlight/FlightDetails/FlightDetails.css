@@ -37,12 +37,12 @@
 
 .OneWay {
   left: 2%;
-  animation: slideLeft 0.4s ease-in-out forwards;
+  animation: slideRight 0.4s ease-in-out forwards;
 }
 
 .RoundTrip {
   left: calc(98%-50%);
-  animation: slideRight 0.4s ease-in-out forwards;
+  animation: slideLeft 0.4s ease-in-out forwards;
 }
 
 .WhiteText {

@@ -12,27 +12,24 @@ export default function FlightDetails({ setType, data, setData }) {
     setFlightType(flightType === "One Way" ? "Round Trip" : "One Way");
     navigate(
       flightType === "One Way"
-        ? "/book-flights/one-way"
-        : "/book-flights/round-trip"
+        ? "/book-flights/round-trip"
+        : "/book-flights/one-way"
     );
   };
 
-  useEffect(() => {
-    navigate("/book-flights/one-way");
-  }, []);
   return (
     <div>
       <div className="ButtonContainer">
         <div onClick={handleComponentChange}>
-          <p className={flightType === "One Way" ? "" : "WhiteText"}>
+          <p className={flightType === "One Way" ? "WhiteText" : ""}>
             One - Way
           </p>
-          <p className={flightType === "One Way" ? "WhiteText" : ""}>
+          <p className={flightType === "One Way" ? "" : "WhiteText"}>
             Round Trip
           </p>
           <div
             className={flightType === "One Way" ? "RoundTrip" : "OneWay"}
-          ></div>
+            ></div>
         </div>
       </div>
       <Routes>

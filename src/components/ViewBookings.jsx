@@ -60,12 +60,12 @@ function ViewBookings() {
     }
   };
 
-  useEffect(() => {
-    const fetchWrapper = async () => {
-      await fetchData();
-    }
-    fetchWrapper();
-  }, []);
+  // useEffect(() => {
+  //   const fetchWrapper = async () => {
+  //     await fetchData();
+  //   }
+  //   fetchWrapper();
+  // }, []);
 
   return (
     <section className="ViewBooking">
