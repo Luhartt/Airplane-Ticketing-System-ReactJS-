@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import ComboBox from "./ComboBox";
+import { Components } from "./Components";
 
 export default function RoundTrip({data, setData}) {
   const Flights = [
@@ -16,6 +16,13 @@ export default function RoundTrip({data, setData}) {
   ];
 
   return (
-    <p>This is round trip </p>
+    <>
+      <form action="">
+        <>
+          <Components.Locations data = {data} setData = {setData} options = {[]}></Components.Locations>
+        </>
+
+      </form>
+    </> 
   );
 }

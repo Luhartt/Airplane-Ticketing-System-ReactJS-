@@ -1,5 +1,4 @@
 import ComboBox from "./ComboBox";
-import Button from "../../Button";
 import FlightFly from "../../../Dependencies/flight_takeoff.png";
 import FlightLand from "../../../Dependencies/flight_takeoff.png";
 import Calendar from "../../../Dependencies/calendar_today.png";
@@ -8,16 +7,16 @@ import Adult from "../../../Dependencies/person.png";
 import Infant from "../../../Dependencies/face.png";
 import Children from "../../../Dependencies/child_care.png";
 
-const Locations = ({ data, setData, options }) => (
+const Locations = (props) => (
   <fieldset className="Locations">
     <div className="LocationsContainer">
       <p> From </p>
       <p>Ninoy Aquino International Airport (MNL)</p>
       <img src={FlightFly} alt="Takeoff" />
       <ComboBox
-        options={options.DepartureLocations || []}
-        setData={setData}
-        data={data}
+        options={props.options.DepartureLocations || []}
+        setData={props.setData}
+        data={props.data}
         keyName="Departure Location"
       ></ComboBox>
     </div>
@@ -27,37 +26,37 @@ const Locations = ({ data, setData, options }) => (
       <p>Ninoy Aquino International Airport (MNL)</p>
       <img src={FlightLand} alt="Land" />
       <ComboBox
-        options={options.ArrivalLocations || []}
-        setData={setData}
-        data={data}
+        options={props.options.ArrivalLocations || []}
+        setData={props.setData}
+        data={props.data}
         keyName="Arrival Location"
       ></ComboBox>
     </div>
   </fieldset>
 );
 
-const DatesOneWay = ({ data, setData, options }) => (
+const DatesOneWay = (props) => (
   <fieldset className="DepartureDate">
     <p> Departure Date</p>
     <img src={Calendar} alt="Date" />
     <ComboBox
-      options={options.DepartureDates || []}
-      setData={setData}
-      data={data}
+      options={props.options.DepartureDates || []}
+      setData={props.setData}
+      data={props.data}
       keyName="Departure Date"
     ></ComboBox>
   </fieldset>
 );
 
-const DatesRoundTrip = ({ data, setData, options }) => (
+const DatesRoundTrip = (props) => (
   <fieldset className="DepartureDate">
     <div className="DateContainer">
       <p> Departure Date</p>
       <img src={Calendar} alt="Date" />
       <ComboBox
-        options={options.DepartureDates || []}
-        setData={setData}
-        data={data}
+        options={props.options.DepartureDates || []}
+        setData={props.setData}
+        data={props.data}
         keyName="Departure Date"
       ></ComboBox>
     </div>
@@ -65,16 +64,16 @@ const DatesRoundTrip = ({ data, setData, options }) => (
       <p> Return Date</p>
       <img src={Calendar} alt="Date" />
       <ComboBox
-        options={options.DepartureDates || []}
-        setData={setData}
-        data={data}
+        options={props.options.DepartureDates || []}
+        setData={props.setData}
+        data={props.data}
         keyName="Departure Date"
       ></ComboBox>
     </div>
   </fieldset>
 );
 
-const ClassSeat = ({ data, setData }) => (
+const ClassSeat = ( props ) => (
   <fieldset className="ClassSeat">
     <p> Class Seat</p>
     <img src={SuitCase} alt="Seat Class" />
@@ -86,14 +85,14 @@ const ClassSeat = ({ data, setData }) => (
         "Premium Economy",
         "First Class",
       ]}
-      setData={setData}
-      data={data}
+      setData={props.setData}
+      data={props.data}
       keyName="Class Seat"
     ></ComboBox>
   </fieldset>
 );
 
-function PassengerCount({ data, setData }) {
+function PassengerCount(props) {
   const passengerInputs = [
     { icon: Adult, label: "Adult", id: "adultCount" },
     { icon: Children, label: "Children (2-11 Years Old)", id: "childrenCount" },
@@ -106,9 +105,9 @@ function PassengerCount({ data, setData }) {
 
     if (isNaN(value)) {
       alert("Input a number");
-      setData({ ...data, [keyName]: keyName === "Adult" ? 1 : 0 });
+      props.setData({ ...props.data, [keyName]: keyName === "Adult" ? 1 : 0 });
     } else {
-      setData({ ...data, [keyName]: value });
+      props.setData({ ...props.data, [keyName]: value });
     }
   };
 
@@ -129,7 +128,7 @@ function PassengerCount({ data, setData }) {
             min={item.label === "Adult" ? 1 : 0}
             max={99}
             id={item.label}
-            value={data[item.label] || (item.label === "Adult" ? 1 : 0)}
+            value={props.data[item.label] || (item.label === "Adult" ? 1 : 0)}
           />
         </div>
       ))}

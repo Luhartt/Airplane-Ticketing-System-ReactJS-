@@ -57,28 +57,27 @@ export default function OneWay({ data, setData }) {
   return (
     <>
       <form action="">
-        {
-          <Components.Locations
-            options={options}
-            data={data}
-            setData={setData}
-          ></Components.Locations>
-        }
-        {
-          <Components.DatesOneWay
-            options={options}
-            data={data}
-            setData={setData}
-          ></Components.DatesOneWay>
-        }
+        <Components.Locations
+          options={options}
+          data={data}
+          setData={setData}
+        ></Components.Locations>
 
-        {
-          <Components.ClassSeat
-            data={data}
-            setData={setData}
-          ></Components.ClassSeat>
-        }
-        {<Components.PassengerCount data={data} setData={setData}></Components.PassengerCount>}
+        <Components.DatesOneWay
+          options={options}
+          data={data}
+          setData={setData}
+        ></Components.DatesOneWay>
+
+        <Components.ClassSeat
+          data={data}
+          setData={setData}
+        ></Components.ClassSeat>
+
+        <Components.PassengerCount
+          data={data}
+          setData={setData}
+        ></Components.PassengerCount>
 
         <Button
           text={"SEARCH FLIGHT"}
