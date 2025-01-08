@@ -26,7 +26,7 @@ export default function App() {
                 <Route
                   key={item.url}
                   path={item.url}
-                  element={<item.component />}
+                  element={<item.component/>}
                 />
               ))}
             </Routes>

@@ -16,6 +16,7 @@ export default function FlightDetails({ setType, data, setData }) {
     setFlightType(
       location.pathname === "/book-flights/one-way" ? "One Way" : "Round Trip"
     );
+    setTimeout(setAnimate(true), 4000);
   }, [location.pathname]);
 
   const handleComponentChange = () => {
@@ -27,6 +28,9 @@ export default function FlightDetails({ setType, data, setData }) {
       location.pathname === "/book-flights/one-way"
         ? "/book-flights/round-trip"
         : "/book-flights/one-way"
+    );
+    setType(
+      location.pathname === "/book-flights/one-way" ? "One Way" : "Round Trip"
     );
   };
 
