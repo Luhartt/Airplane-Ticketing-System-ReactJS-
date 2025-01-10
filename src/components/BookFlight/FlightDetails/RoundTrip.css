@@ -1,0 +1,65 @@
+form.RoundTripForm {
+  display: grid;
+  grid-template-areas: "Locations Dates" "Passenger ClassSeat" "Passenger Button";
+
+  fieldset.Locations {
+    grid-area: Locations;
+    margin-right: 2rem;
+    hr{
+        height: 0;
+    }
+  }
+
+  fieldset.Dates {
+    grid-area: Dates;
+  }
+
+  fieldset.ClassSeat {
+    grid-area: ClassSeat;
+    margin-top: 2rem;
+    height: 60%;
+    p{
+        margin-block: 0 !important;
+    }
+  }
+
+  fieldset.PassengerCount {
+    grid-area: Passenger;
+    margin-top: 2rem;
+    margin-right: 2rem;
+  }
+  button {
+    grid-area: Button;
+    justify-self: center;
+  }
+
+  fieldset.Dates > .DateContainer,
+  fieldset.ClassSeat{
+    display: grid;
+    grid-template-areas: "Label Label" "Image ComboBox";
+    grid-template-columns: 50px auto;
+    p {
+      grid-area: Label;
+      margin-block: 10px;
+    }
+    img {
+      grid-area: Image;
+    }
+    .ComboBox {
+      grid-area: ComboBox;
+      align-self: center;
+      justify-self: self-start;
+    }    
+  }
+  fieldset.Dates > hr {
+    position: relative;
+    height: 0;
+    top: 50%;
+    width: 100%;
+  }
+
+  fieldset.PassengerCount{
+    display: flex;
+    flex-direction: column;
+  }
+}

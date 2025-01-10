@@ -1,13 +1,5 @@
 import "./OneWay.css";
-import ComboBox from "./ComboBox";
 import Button from "../../Button";
-import FlightFly from "../../../Dependencies/flight_takeoff.png";
-import FlightLand from "../../../Dependencies/flight_takeoff.png";
-import Calendar from "../../../Dependencies/calendar_today.png";
-import SuitCase from "../../../Dependencies/work.png";
-import Adult from "../../../Dependencies/person.png";
-import Infant from "../../../Dependencies/face.png";
-import Children from "../../../Dependencies/child_care.png";
 import { Components } from "./Components";
 
 export default function OneWay({ data, setData }) {
@@ -56,7 +48,7 @@ export default function OneWay({ data, setData }) {
   };
   return (
     <>
-      <form action="">
+      <form action="" className="OneWayForm">
         <Components.Locations
           options={options}
           data={data}

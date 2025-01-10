@@ -49,7 +49,7 @@ const DatesOneWay = (props) => (
 );
 
 const DatesRoundTrip = (props) => (
-  <fieldset className="DepartureDate">
+  <fieldset className="Dates">
     <div className="DateContainer">
       <p> Departure Date</p>
       <img src={Calendar} alt="Date" />
@@ -60,6 +60,7 @@ const DatesRoundTrip = (props) => (
         keyName="Departure Date"
       ></ComboBox>
     </div>
+    <hr />
     <div className="DateContainer">
       <p> Return Date</p>
       <img src={Calendar} alt="Date" />
@@ -73,7 +74,7 @@ const DatesRoundTrip = (props) => (
   </fieldset>
 );
 
-const ClassSeat = ( props ) => (
+const ClassSeat = (props) => (
   <fieldset className="ClassSeat">
     <p> Class Seat</p>
     <img src={SuitCase} alt="Seat Class" />
@@ -113,25 +114,28 @@ function PassengerCount(props) {
 
   return (
     <fieldset className="PassengerCount">
-      {passengerInputs.map((item, index) => (
-        <div key={`${item.label} ${index} container`}>
-          <p key={`${item.label} ${index} label`}>{item.label}</p>
-          <img
-            key={`${item.label} ${index} image`}
-            src={item.icon}
-            alt={item.label}
-          />
-          <input
-            onChange={(event) => handleTextInput(event, item.label)}
-            key={`${item.label} ${index} input`}
-            type="number"
-            min={item.label === "Adult" ? 1 : 0}
-            max={99}
-            id={item.label}
-            value={props.data[item.label] || (item.label === "Adult" ? 1 : 0)}
-          />
-        </div>
-      ))}
+      <p>Companions</p>
+      <div>
+        {passengerInputs.map((item, index) => (
+          <div key={`${item.label} ${index} container`}>
+            <p key={`${item.label} ${index} label`}>{item.label}</p>
+            <img
+              key={`${item.label} ${index} image`}
+              src={item.icon}
+              alt={item.label}
+            />
+            <input
+              onChange={(event) => handleTextInput(event, item.label)}
+              key={`${item.label} ${index} input`}
+              type="number"
+              min={item.label === "Adult" ? 1 : 0}
+              max={99}
+              id={item.label}
+              value={props.data[item.label] || (item.label === "Adult" ? 1 : 0)}
+            />
+          </div>
+        ))}
+      </div>
     </fieldset>
   );
 }

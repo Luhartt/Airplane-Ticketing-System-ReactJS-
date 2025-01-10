@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 export default function FlightDetails({ setType, data, setData }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const [Animate, setAnimate] = useState(false);
+  const [animate, setAnimate] = useState(false);
   const [flightType, setFlightType] = useState(
     location.pathname === "/book-flights/one-way" ? "One Way" : "Round Trip"
   );
@@ -16,7 +16,6 @@ export default function FlightDetails({ setType, data, setData }) {
     setFlightType(
       location.pathname === "/book-flights/one-way" ? "One Way" : "Round Trip"
     );
-    setTimeout(setAnimate(true), 4000);
   }, [location.pathname]);
 
   const handleComponentChange = () => {
@@ -32,6 +31,10 @@ export default function FlightDetails({ setType, data, setData }) {
     setType(
       location.pathname === "/book-flights/one-way" ? "One Way" : "Round Trip"
     );
+    setTimeout(() => {
+      setAnimate(false);
+    }, 400);
+    setData({ })
   };
 
   return (
@@ -41,7 +44,7 @@ export default function FlightDetails({ setType, data, setData }) {
           <p
             className={
               flightType === "One Way"
-                ? Animate
+                ? animate
                   ? "WhiteText"
                   : "WhiteText"
                 : ""
@@ -51,14 +54,14 @@ export default function FlightDetails({ setType, data, setData }) {
           </p>
           <p
             className={
-              flightType === "One Way" ? (Animate ? "" : "") : "WhiteText"
+              flightType === "One Way" ? (animate ? "" : "") : "WhiteText"
             }
           >
             Round Trip
           </p>
           <div
-            className={`${flightType === "One Way" ? "RoundTrip" : "OneWay"}${
-              Animate ? "Animate" : ""
+            className={`${flightType === "One Way" ? "OneWay" : "RoundTrip"}${
+              animate ? "Animate" : ""
             }`}
           ></div>
         </div>
