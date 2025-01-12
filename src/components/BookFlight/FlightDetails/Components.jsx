@@ -6,6 +6,7 @@ import SuitCase from "../../../Dependencies/work.png";
 import Adult from "../../../Dependencies/person.png";
 import Infant from "../../../Dependencies/face.png";
 import Children from "../../../Dependencies/child_care.png";
+import { useData } from "../DataSetter";
 
 const Locations = (props) => (
   <fieldset className="Locations">
@@ -15,8 +16,6 @@ const Locations = (props) => (
       <img src={FlightFly} alt="Takeoff" />
       <ComboBox
         options={props.options.DepartureLocations || []}
-        setData={props.setData}
-        data={props.data}
         keyName="Departure Location"
       ></ComboBox>
     </div>
@@ -27,8 +26,6 @@ const Locations = (props) => (
       <img src={FlightLand} alt="Land" />
       <ComboBox
         options={props.options.ArrivalLocations || []}
-        setData={props.setData}
-        data={props.data}
         keyName="Arrival Location"
       ></ComboBox>
     </div>
@@ -41,8 +38,6 @@ const DatesOneWay = (props) => (
     <img src={Calendar} alt="Date" />
     <ComboBox
       options={props.options.DepartureDates || []}
-      setData={props.setData}
-      data={props.data}
       keyName="Departure Date"
     ></ComboBox>
   </fieldset>
@@ -55,8 +50,6 @@ const DatesRoundTrip = (props) => (
       <img src={Calendar} alt="Date" />
       <ComboBox
         options={props.options.DepartureDates || []}
-        setData={props.setData}
-        data={props.data}
         keyName="Departure Date"
       ></ComboBox>
     </div>
@@ -66,8 +59,6 @@ const DatesRoundTrip = (props) => (
       <img src={Calendar} alt="Date" />
       <ComboBox
         options={props.options.DepartureDates || []}
-        setData={props.setData}
-        data={props.data}
         keyName="Departure Date"
       ></ComboBox>
     </div>
@@ -86,14 +77,14 @@ const ClassSeat = (props) => (
         "Premium Economy",
         "First Class",
       ]}
-      setData={props.setData}
-      data={props.data}
       keyName="Class Seat"
     ></ComboBox>
   </fieldset>
 );
 
 function PassengerCount(props) {
+  const { data, setData } = useData();
+
   const passengerInputs = [
     { icon: Adult, label: "Adult", id: "adultCount" },
     { icon: Children, label: "Children (2-11 Years Old)", id: "childrenCount" },
@@ -106,9 +97,9 @@ function PassengerCount(props) {
 
     if (isNaN(value)) {
       alert("Input a number");
-      props.setData({ ...props.data, [keyName]: keyName === "Adult" ? 1 : 0 });
+      setData({ ...data, [keyName]: keyName === "Adult" ? 1 : 0 });
     } else {
-      props.setData({ ...props.data, [keyName]: value });
+      setData({ ...data, [keyName]: value });
     }
   };
 
@@ -131,7 +122,7 @@ function PassengerCount(props) {
               min={item.label === "Adult" ? 1 : 0}
               max={99}
               id={item.label}
-              value={props.data[item.label] || (item.label === "Adult" ? 1 : 0)}
+              value={data[item.label] || (item.label === "Adult" ? 1 : 0)}
             />
           </div>
         ))}

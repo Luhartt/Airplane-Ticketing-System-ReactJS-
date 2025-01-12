@@ -1,18 +1,16 @@
 import "./BookFlight.css";
 import FlightDetails from "./FlightDetails/FlightDetails";
+import AvailableFlights from "./AvailableFlights";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-
+import { DataProvider } from "./DataSetter";
 
 export default function BookFlights() {
   const [Type, setType] = useState();
-  const [Data, setData] = useState({});
   const navigate = useNavigate();
   const location = useLocation();
 
-
-
-  useEffect (() => {
+  useEffect(() => {
     if (location.pathname === "/book-flights/*") {
       navigate("/book-flights/one-way");
     }
@@ -20,7 +18,12 @@ export default function BookFlights() {
 
   return (
     <section className="bookFlights">
-      <FlightDetails data = {Data} setData = {setData} setType = {setType}></FlightDetails>
+      <DataProvider>
+        {/* <FlightDetails
+          setType={setType}
+        ></FlightDetails> */}
+        <AvailableFlights></AvailableFlights>
+      </DataProvider>
     </section>
   );
 }

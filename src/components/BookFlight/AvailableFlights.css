@@ -1,0 +1,58 @@
+.AvailableFlightContainer {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #ACACAC;
+    width: 90%;
+    margin: 2.5rem auto;
+    border-radius: 30px;
+
+  > h1 {
+    text-align: center;
+    margin-block: 2.5rem;
+    font-family: Kantumruy Pro SemiBold;
+    font-size: 2.5rem;
+  }
+
+  .AvailableFlight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    border: 3px solid var(--indigolight50);
+    margin-inline: 5rem;
+    margin-block: 2rem;
+    border-radius: 30px;
+    position: relative;
+    .Flight {
+      width: 70%;
+    }
+    legend {
+      font-family: Kantumruy Pro Semibold;
+      font-size: large;
+    }
+
+    .Text {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
+      p {
+        color: black;
+        font-family: Kantumruy Pro Bold;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+.SelectedFlight {
+  border-color: var(--indigo100) !important;
+}
+
+.Buttons{
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+  padding-bottom: 2rem;
+}

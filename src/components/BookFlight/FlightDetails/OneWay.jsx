@@ -1,20 +1,8 @@
 import "./OneWay.css";
-import Button from "../../Button";
+import {Buttons} from "../../Button";
 import { Components } from "./Components";
 
-export default function OneWay({ data, setData }) {
-  const Flights = [
-    "Manila",
-    "Cebu",
-    "Taguig",
-    "Manila",
-    "Cebu",
-    "Taguig",
-    "Manila",
-    "Cebu",
-    "Taguig",
-  ];
-
+export default function OneWay({ handleSubmit }) {
   const options = {
     DepartureLocations: [
       "Manila",
@@ -41,41 +29,18 @@ export default function OneWay({ data, setData }) {
     DepartureDates: ["1", "2", "3", "4"],
   };
 
-  const test = () => {
-    Object.entries(data).forEach(([key, value]) => {
-      console.log(`${key}: ${value}`);
-    });
-  };
   return (
     <>
       <form action="" className="OneWayForm">
-        <Components.Locations
-          options={options}
-          data={data}
-          setData={setData}
-        ></Components.Locations>
-
-        <Components.DatesOneWay
-          options={options}
-          data={data}
-          setData={setData}
-        ></Components.DatesOneWay>
-
-        <Components.ClassSeat
-          data={data}
-          setData={setData}
-        ></Components.ClassSeat>
-
-        <Components.PassengerCount
-          data={data}
-          setData={setData}
-        ></Components.PassengerCount>
-
-        <Button
+        <Components.Locations options={options}></Components.Locations>
+        <Components.DatesOneWay options={options}></Components.DatesOneWay>
+        <Components.ClassSeat></Components.ClassSeat>
+        <Components.PassengerCount></Components.PassengerCount>
+        <Buttons.ContinueButton
           text={"SEARCH FLIGHT"}
-          handleClick={test}
+          handleClick={() => handleSubmit("OneWay")}
           type={"button"}
-        ></Button>
+        ></Buttons.ContinueButton>
       </form>
     </>
   );

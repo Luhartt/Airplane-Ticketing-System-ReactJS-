@@ -9,7 +9,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "Togel089530b*",
   database: "airplaneticketingsystem2024",
 });
 
@@ -34,6 +34,7 @@ ORDER BY Flights.DepartureDate ASC;
   db.query(query, (err, results) => {
     if (err) res.status(500).json({ error: err });
     res.json(results);
+    console.log(results)
   });
 });
 

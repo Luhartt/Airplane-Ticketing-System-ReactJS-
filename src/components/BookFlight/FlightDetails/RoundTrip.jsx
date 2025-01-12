@@ -1,57 +1,23 @@
-import { useState } from "react";
-import Button from "../../Button";
-import "./RoundTrip.css"
+import { Buttons } from "../../Button";
+import "./RoundTrip.css";
 
 import { Components } from "./Components";
 
-export default function RoundTrip({ data, setData }) {
-  const Flights = [
-    "Manila",
-    "Cebu",
-    "Taguig",
-    "Manila",
-    "Cebu",
-    "Taguig",
-    "Manila",
-    "Cebu",
-    "Taguig",
-  ];
-  const test = () => {
-    Object.entries(data).forEach(([key, value]) => {
-      console.log(`${key}: ${value}`);
-    });
-  };
-
+export default function RoundTrip({ data, setData, handleSubmit }) {
   return (
     <>
       <form action="" className="RoundTripForm">
         <>
-          <Components.Locations
-            data={data}
-            setData={setData}
-            options={[]}
-          ></Components.Locations>
-          <Components.DatesRoundTrip
-            data={data}
-            setData={setData}
-            options={[]}
-          ></Components.DatesRoundTrip>
-          <Components.ClassSeat
-            data={data}
-            setData={setData}
-            options={[]}
-          ></Components.ClassSeat>
-          <Components.PassengerCount
-            data={data}
-            setData={setData}
-            options={[]}
-          ></Components.PassengerCount>
+          <Components.Locations options={[]}></Components.Locations>
+          <Components.DatesRoundTrip options={[]}></Components.DatesRoundTrip>
+          <Components.ClassSeat></Components.ClassSeat>
+          <Components.PassengerCount></Components.PassengerCount>
         </>
-        <Button
+        <Buttons.ContinueButton
           text={"SEARCH FLIGHT"}
-          handleClick={test}
+          handleClick={() => handleSubmit("RoundTrip")}
           type={"button"}
-        ></Button>
+        ></Buttons.ContinueButton>
       </form>
     </>
   );

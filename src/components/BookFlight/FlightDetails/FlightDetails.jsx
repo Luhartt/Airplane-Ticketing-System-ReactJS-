@@ -3,8 +3,9 @@ import OneWay from "./OneWay";
 import "./FlightDetails.css";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useData } from "../DataSetter";
 
-export default function FlightDetails({ setType, data, setData }) {
+export default function FlightDetails({ setType }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [animate, setAnimate] = useState(false);
@@ -12,6 +13,7 @@ export default function FlightDetails({ setType, data, setData }) {
     location.pathname === "/book-flights/one-way" ? "One Way" : "Round Trip"
   );
 
+  const {data, setData} = useData();
   useEffect(() => {
     setFlightType(
       location.pathname === "/book-flights/one-way" ? "One Way" : "Round Trip"
@@ -36,6 +38,12 @@ export default function FlightDetails({ setType, data, setData }) {
     }, 400);
     setData({ })
   };
+
+const handleSubmit = (type) =>{
+  Object.entries(data).forEach(([key, value]) => {
+    console.log(`${key}: ${value}`);
+  });
+}
 
   return (
     <div>
@@ -69,11 +77,11 @@ export default function FlightDetails({ setType, data, setData }) {
       <Routes>
         <Route
           path="one-way"
-          element={<OneWay data={data} setData={setData} />}
+          element={<OneWay handleSubmit={handleSubmit}/>}
         />
         <Route
           path="round-trip"
-          element={<RoundTrip data={data} setData={setData} />}
+          element={<RoundTrip handleSubmit={handleSubmit}/>}
         />
       </Routes>
     </div>

@@ -1,10 +1,22 @@
-.CustomButton{
+.CustomButtonContinue{
     background-color: var(--indigo85);
     width: fit-content;
     border: none;
     padding: 1.5rem 3rem;
     font-family: "Kantumruy Pro SemiBold";
     color: white;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor:pointer;
+}
+
+.CustomButtonBack{
+    background-color: white;
+    width: fit-content;
+    border: 2px solid var(--indigo85);
+    padding: 1.5rem 3rem;
+    font-family: "Kantumruy Pro SemiBold";
+    color: var(--indigo85);
     font-size: 1rem;
     border-radius: 25px;
     cursor:pointer;

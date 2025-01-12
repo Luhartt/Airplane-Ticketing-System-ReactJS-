@@ -50,12 +50,12 @@ function FlightsDashboard() {
     }
   };
 
-  // useEffect(() => {
-  //   const fetchWrapper = async () => {
-  //     await fetchData();
-  //   }
-  //   fetchWrapper();
-  // }, []);
+  useEffect(() => {
+    const fetchWrapper = async () => {
+      await fetchData();
+    }
+    fetchWrapper();
+  }, []);
 
   return (
     <>

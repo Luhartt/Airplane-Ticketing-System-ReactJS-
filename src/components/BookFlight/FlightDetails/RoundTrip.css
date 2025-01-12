@@ -4,7 +4,7 @@ form.RoundTripForm {
 
   fieldset.Locations {
     grid-area: Locations;
-    margin-right: 2rem;
+    margin-right: 1.5rem;
     hr{
         height: 0;
     }
@@ -16,7 +16,7 @@ form.RoundTripForm {
 
   fieldset.ClassSeat {
     grid-area: ClassSeat;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     height: 60%;
     p{
         margin-block: 0 !important;
@@ -25,7 +25,7 @@ form.RoundTripForm {
 
   fieldset.PassengerCount {
     grid-area: Passenger;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     margin-right: 2rem;
   }
   button {
@@ -51,11 +51,12 @@ form.RoundTripForm {
       justify-self: self-start;
     }    
   }
-  fieldset.Dates > hr {
+  fieldset > hr {
     position: relative;
     height: 0;
     top: 50%;
     width: 100%;
+    margin-block: 10px;
   }
 
   fieldset.PassengerCount > div{

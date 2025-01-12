@@ -1,6 +1,9 @@
 import "./ComboBox.css"
+import { useData } from "../DataSetter";
 
-export default function ComboBox({ options = [], setData, keyName, data }) {
+export default function ComboBox({ options = [], keyName}) {
+  const { data, setData } = useData();
+
   const onSelection = (event) => {
     setData({ ...data, [keyName]: event.target.value });
   };
