@@ -1,10 +1,10 @@
 .AvailableFlightContainer {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid #ACACAC;
-    width: 90%;
-    margin: 2.5rem auto;
-    border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #acacac;
+  width: 90%;
+  margin: 2.5rem auto;
+  border-radius: 30px;
 
   > h1 {
     text-align: center;
@@ -49,7 +49,7 @@
   border-color: var(--indigo100) !important;
 }
 
-.Buttons{
+.Buttons {
   display: flex;
   justify-content: center;
   gap: 2rem;

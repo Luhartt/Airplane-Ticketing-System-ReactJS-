@@ -19,9 +19,9 @@ export default function BookFlights() {
   return (
     <section className="bookFlights">
       <DataProvider>
-        {/* <FlightDetails
+        <FlightDetails
           setType={setType}
-        ></FlightDetails> */}
+        ></FlightDetails>
         <AvailableFlights></AvailableFlights>
       </DataProvider>
     </section>

@@ -13,7 +13,7 @@ export default function FlightDetails({ setType }) {
     location.pathname === "/book-flights/one-way" ? "One Way" : "Round Trip"
   );
 
-  const {data, setData} = useData();
+  const { data, setData } = useData();
   useEffect(() => {
     setFlightType(
       location.pathname === "/book-flights/one-way" ? "One Way" : "Round Trip"
@@ -36,19 +36,20 @@ export default function FlightDetails({ setType }) {
     setTimeout(() => {
       setAnimate(false);
     }, 400);
-    setData({ })
+    setData({});
   };
 
-const handleSubmit = (type) =>{
-  Object.entries(data).forEach(([key, value]) => {
-    console.log(`${key}: ${value}`);
-  });
-}
+  const handleSubmit = (type) => {
+    Object.entries(data).forEach(([key, value]) => {
+      console.log(`${key}: ${value}`);
+    });
+    navigate("/book-flights/departure-flight");
+  };
 
   return (
     <div>
       <div className="ButtonContainer">
-        <div onClick={handleComponentChange}>
+        <div onClick={() => handleComponentChange}>
           <p
             className={
               flightType === "One Way"
@@ -77,11 +78,11 @@ const handleSubmit = (type) =>{
       <Routes>
         <Route
           path="one-way"
-          element={<OneWay handleSubmit={handleSubmit}/>}
+          element={<OneWay handleSubmit={handleSubmit} />}
         />
         <Route
           path="round-trip"
-          element={<RoundTrip handleSubmit={handleSubmit}/>}
+          element={<RoundTrip handleSubmit={handleSubmit} />}
         />
       </Routes>
     </div>
