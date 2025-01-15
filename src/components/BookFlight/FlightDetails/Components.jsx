@@ -59,7 +59,7 @@ const DatesRoundTrip = (props) => (
       <img src={Calendar} alt="Date" />
       <ComboBox
         options={props.options.DepartureDates || []}
-        keyName="Departure Date"
+        keyName="Return Date"
       ></ComboBox>
     </div>
   </fieldset>

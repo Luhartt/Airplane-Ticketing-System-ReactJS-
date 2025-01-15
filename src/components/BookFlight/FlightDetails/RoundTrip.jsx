@@ -3,13 +3,42 @@ import "./RoundTrip.css";
 
 import { Components } from "./Components";
 
-export default function RoundTrip({ data, setData, handleSubmit }) {
+export default function RoundTrip({ handleSubmit }) {
+
+  const options = {
+    DepartureLocations: [
+      "Manila",
+      "Cebu",
+      "Taguig",
+      "Manila",
+      "Cebu",
+      "Taguig",
+      "Manila",
+      "Cebu",
+      "Taguig",
+    ],
+    ArrivalLocations: [
+      "Manila",
+      "Cebu",
+      "Taguig",
+      "Manila",
+      "Cebu",
+      "Taguig",
+      "Manila",
+      "Cebu",
+      "Taguig",
+    ],
+    DepartureDates: ["1", "2", "3", "4"],
+    ReturnDates: ["1", "2", "3", "4"]
+  };
+
+
   return (
     <>
       <form action="" className="RoundTripForm">
         <>
-          <Components.Locations options={[]}></Components.Locations>
-          <Components.DatesRoundTrip options={[]}></Components.DatesRoundTrip>
+          <Components.Locations options={options}></Components.Locations>
+          <Components.DatesRoundTrip options={options}></Components.DatesRoundTrip>
           <Components.ClassSeat></Components.ClassSeat>
           <Components.PassengerCount></Components.PassengerCount>
         </>

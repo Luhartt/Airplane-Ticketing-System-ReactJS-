@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { DataProvider } from "./DataSetter";
 
 export default function BookFlights() {
-  const [Type, setType] = useState();
+  const [type, setType] = useState();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -19,10 +19,9 @@ export default function BookFlights() {
   return (
     <section className="bookFlights">
       <DataProvider>
-        <FlightDetails
-          setType={setType}
-        ></FlightDetails>
+        <FlightDetails setType={setType}></FlightDetails>
         <AvailableFlights></AvailableFlights>
+        {/* {type === "Round Trip" && <AvailableFlights type="return-flight"/>} */}
       </DataProvider>
     </section>
   );

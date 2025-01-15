@@ -9,6 +9,7 @@ export default function FlightDetails({ setType }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [animate, setAnimate] = useState(false);
+  const [isFlightDetails, setIsFlightDetails] = useState(true);
   const [flightType, setFlightType] = useState(
     location.pathname === "/book-flights/one-way" ? "One Way" : "Round Trip"
   );
@@ -18,6 +19,15 @@ export default function FlightDetails({ setType }) {
     setFlightType(
       location.pathname === "/book-flights/one-way" ? "One Way" : "Round Trip"
     );
+    if (
+      location.pathname === "/book-flights/one-way" ||
+      location.pathname === "/book-flights/round-trip"
+    ) {
+      setIsFlightDetails(true);
+    }
+    if (location.pathname === "/book-flights/departure-flight") {
+      setIsFlightDetails(false);
+    }
   }, [location.pathname]);
 
   const handleComponentChange = () => {
@@ -39,50 +49,84 @@ export default function FlightDetails({ setType }) {
     setData({});
   };
 
+  const validate = (type) => {
+    if (!data.hasOwnProperty("Departure Location")) {
+      return false;
+    }
+    if (!data.hasOwnProperty("Arrival Location")) {
+      return false;
+    }
+    if (!data.hasOwnProperty("Departure Date")) {
+      return false;
+    }
+    if (!data.hasOwnProperty("Class Seat")) {
+      return false;
+    }
+
+    if (type === "Round Trip" && !data.hasOwnProperty("Return Date")) {
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = (type) => {
-    Object.entries(data).forEach(([key, value]) => {
-      console.log(`${key}: ${value}`);
+    if (!validate(type)) {
+
+      alert("Fill Up All Fields");
+      return;
+    }
+    setData({
+      ...data,
+      Type: type,
     });
+      Object.entries(data).forEach(([key, value]) => {
+        console.log(`${key}: ${value}`);
+      });
+    setIsFlightDetails(false);
     navigate("/book-flights/departure-flight");
   };
 
   return (
     <div>
-      <div className="ButtonContainer">
-        <div onClick={() => handleComponentChange}>
-          <p
-            className={
-              flightType === "One Way"
-                ? animate
-                  ? "WhiteText"
-                  : "WhiteText"
-                : ""
-            }
-          >
-            One - Way
-          </p>
-          <p
-            className={
-              flightType === "One Way" ? (animate ? "" : "") : "WhiteText"
-            }
-          >
-            Round Trip
-          </p>
-          <div
-            className={`${flightType === "One Way" ? "OneWay" : "RoundTrip"}${
-              animate ? "Animate" : ""
-            }`}
-          ></div>
+      {isFlightDetails && (
+        <div className="ButtonContainer">
+          <div onClick={handleComponentChange}>
+            <p
+              className={
+                flightType === "One Way"
+                  ? animate
+                    ? "WhiteText"
+                    : "WhiteText"
+                  : ""
+              }
+            >
+              One - Way
+            </p>
+            <p
+              className={
+                flightType === "One Way" ? (animate ? "" : "") : "WhiteText"
+              }
+            >
+              Round Trip
+            </p>
+            <div
+              className={`${flightType === "One Way" ? "OneWay" : "RoundTrip"}${
+                animate ? "Animate" : ""
+              }`}
+            ></div>
+          </div>
         </div>
-      </div>
+      )}
       <Routes>
         <Route
-          path="one-way"
-          element={<OneWay handleSubmit={handleSubmit} />}
+          path="one-way/*"
+          element={<OneWay handleSubmit={() => handleSubmit("One Way")} />}
         />
         <Route
-          path="round-trip"
-          element={<RoundTrip handleSubmit={handleSubmit} />}
+          path="round-trip/*"
+          element={
+            <RoundTrip handleSubmit={() => handleSubmit("Round Trip")} />
+          }
         />
       </Routes>
     </div>
