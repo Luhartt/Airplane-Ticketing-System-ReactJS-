@@ -1,0 +1,37 @@
+.Detail {
+  border: 1px solid #9c9c9c;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+  padding: 2rem 0;
+  -webkit-box-shadow: 5px 10px 98px -103px rgba(0,0,0,0.76);
+  -moz-box-shadow: 5px 10px 98px -103px rgba(0,0,0,0.76);
+  box-shadow: 5px 10px 98px -103px rgba(0,0,0,0.76);
+
+  p {
+    font-family: Kantumruy Pro SemiBold;
+    font-size: 1.5rem;
+  }
+  label {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-block: 1rem;
+    font-family: Kantumruy Pro SemiBold;
+    color: #9092a1;
+    font-size: 1.25rem;
+  }
+  input {
+    background-color: #f4f4f4;
+    border-radius: 20px;
+    border: none;
+    font-size: 1rem;
+    height: 3rem;
+    padding: 1rem;
+    width: 20rem;
+  }
+}

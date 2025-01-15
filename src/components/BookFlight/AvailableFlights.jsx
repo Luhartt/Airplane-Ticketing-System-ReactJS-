@@ -2,7 +2,7 @@ import { Route, Routes, useNavigate, useLocation } from "react-router";
 import { useData } from "./DataSetter";
 import Flight from "../Flight";
 import "./AvailableFlights.css";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Buttons } from "../Button";
 
 export default function AvailableFlights() {
@@ -64,14 +64,17 @@ export default function AvailableFlights() {
       },
     ];
     const { data, setData } = useData();
-
     const [Selected, setSelected] = useState(
       data[type === "Departure" ? "Departure Index" : "Return Index" || -1]
     );
     const navigate = useNavigate();
     const location = useLocation();
     const tripType = data.Type;
+    const divScroll = useRef(null);
 
+    useEffect(() => {
+      divScroll.current.scrollTo(0, 0);
+    });
     const handleSelectFlight = (index, item) => {
       setSelected(index);
       setData({
@@ -90,7 +93,11 @@ export default function AvailableFlights() {
         navigate("/book-flights/departure-flight");
         delete data["Selected Return Flight"];
       } else {
-        navigate(tripType === "One Way" ? "/book-flights/one-way" : "/book-flights/round-trip");
+        navigate(
+          tripType === "One Way"
+            ? "/book-flights/one-way"
+            : "/book-flights/round-trip"
+        );
         delete data["Selected Departure Flight"];
       }
     };
@@ -104,13 +111,13 @@ export default function AvailableFlights() {
       ) {
         navigate("/book-flights/return-flight");
       } else {
-        console.log("Next!!");
+        navigate("/book-flights/passenger-details");
       }
     };
     return (
-      <>
+      <div className="AvailableFlightsWrapper" ref={divScroll}>
+        <h1>Select {type} Flights</h1>
         <div className="AvailableFlightContainer">
-          <h1>Select Departure Flights</h1>
           {AvailableFlightsData.map((item, index) => (
             <fieldset
               className={`AvailableFlight ${
@@ -138,7 +145,7 @@ export default function AvailableFlights() {
             handleClick={handleContinue}
           ></Buttons.ContinueButton>
         </div>
-      </>
+      </div>
     );
   };
 

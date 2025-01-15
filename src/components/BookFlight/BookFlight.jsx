@@ -1,6 +1,7 @@
 import "./BookFlight.css";
 import FlightDetails from "./FlightDetails/FlightDetails";
 import AvailableFlights from "./AvailableFlights";
+import PassengerDetails from "./PassengerDetails";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { DataProvider } from "./DataSetter";
@@ -21,7 +22,7 @@ export default function BookFlights() {
       <DataProvider>
         <FlightDetails setType={setType}></FlightDetails>
         <AvailableFlights></AvailableFlights>
-        {/* {type === "Round Trip" && <AvailableFlights type="return-flight"/>} */}
+        <PassengerDetails></PassengerDetails>
       </DataProvider>
     </section>
   );

@@ -1,10 +1,7 @@
-.AvailableFlightContainer {
-  display: flex;
-  flex-direction: column;
-  border: 2px solid #acacac;
-  width: 90%;
-  margin: 2.5rem auto;
-  border-radius: 30px;
+.AvailableFlightsWrapper {
+  height: 100%;
+  overflow: scroll;
+
 
   > h1 {
     text-align: center;
@@ -12,6 +9,16 @@
     font-family: Kantumruy Pro SemiBold;
     font-size: 2.5rem;
   }
+}
+
+.AvailableFlightContainer {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #acacac;
+  width: 90%;
+  margin: 2.5rem auto;
+  border-radius: 30px;
+  overflow: scroll;
 
   .AvailableFlight {
     display: flex;
@@ -25,8 +32,10 @@
     position: relative;
     .Flight {
       width: 70%;
+      padding-block: 2.5rem;
     }
     legend {
+      margin-left: 2rem;
       font-family: Kantumruy Pro Semibold;
       font-size: large;
     }

@@ -87,7 +87,7 @@ export default function FlightDetails({ setType }) {
   };
 
   return (
-    <div>
+    <div className="FlightDetails">
       {isFlightDetails && (
         <div className="ButtonContainer">
           <div onClick={handleComponentChange}>

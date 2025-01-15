@@ -5,6 +5,9 @@
   align-items: center;
   padding-top: 2vh;
   font-family: Kantumruy Pro SemiBold;
+  -webkit-box-shadow: 5px 10px 98px -103px rgba(0, 0, 0, 0.76);
+  -moz-box-shadow: 5px 10px 98px -103px rgba(0, 0, 0, 0.76);
+  box-shadow: 5px 10px 98px -103px rgba(0, 0, 0, 0.76);
 }
 
 .ButtonContainer > div {
@@ -78,55 +81,54 @@
   }
 }
 
-form {
+div.FlightDetails form {
   width: 100%;
   height: 100%;
   padding-top: 2%;
   padding-inline: 5%;
   padding-bottom: 0;
   display: grid;
-}
 
-fieldset p:nth-child(1) {
-  font-family: "Kantumruy Pro Regular";
-  color: #9c9c9c; 
-}
+  fieldset p:nth-child(1) {
+    font-family: "Kantumruy Pro Regular";
+    color: #9c9c9c;
+  }
 
-fieldset {
-  display: grid;
-  padding: 4% 3%;
-  border: 2px solid #9c9c9c;
-  border-radius: 20px;
-}
+  fieldset {
+    display: grid;
+    padding: 4% 3%;
+    border: 2px solid #9c9c9c;
+    border-radius: 20px;
+  }
 
+  fieldset.Locations > div.LocationsContainer {
+    align-items: start;
+    display: grid;
+    grid-template-areas:
+      "label label"
+      "image combobox"
+      "image value";
+    grid-template-columns: 50px auto;
+  }
 
-fieldset.Locations > div.LocationsContainer {
-  align-items: start;
-  display: grid;
-  grid-template-areas:
-    "label label"
-    "image combobox"
-    "image value";
-  grid-template-columns: 50px auto;
-}
+  fieldset.Locations > div.LocationsContainer p:nth-child(1) {
+    grid-area: label;
+    margin-block: 10px;
+    color: #9c9c9c;
+  }
+  fieldset.Locations > div.LocationsContainer p:nth-child(2) {
+    font-family: "Kantumruy Pro Regular";
+    grid-area: value;
+    color: #9c9c9c;
+  }
 
-fieldset.Locations > div.LocationsContainer p:nth-child(1) {
-  grid-area: label;
-  margin-block: 10px;
-  color: #9c9c9c;
-}
-fieldset.Locations > div.LocationsContainer p:nth-child(2) {
-  font-family: "Kantumruy Pro Regular";
-  grid-area: value;
-  color: #9c9c9c;
-}
+  fieldset.Locations > div.LocationsContainer img {
+    height: 5vh;
+    width: 5vh;
+    grid-area: image;
+  }
 
-fieldset.Locations > div.LocationsContainer img {
-  height: 5vh;
-  width: 5vh;
-  grid-area: image;
-}
-
-fieldset.Locations > div.LocationsContainer .ComboBox {
-  grid-area: combobox;
+  fieldset.Locations > div.LocationsContainer .ComboBox {
+    grid-area: combobox;
+  }
 }
