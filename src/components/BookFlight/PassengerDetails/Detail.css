@@ -5,7 +5,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 50%;
   margin: auto;
   padding: 2rem 0;
   -webkit-box-shadow: 5px 10px 98px -103px rgba(0,0,0,0.76);
@@ -33,5 +32,16 @@
     height: 3rem;
     padding: 1rem;
     width: 20rem;
+  }
+}
+
+.SingleDetail{
+  width: 50% !important;
+}
+
+.MultipleDetails{
+  width: 40% !important;
+  input{
+    width: 20rem !important;
   }
 }

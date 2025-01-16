@@ -12,7 +12,7 @@ export default function PassengerDetails() {
 
   const PassengerDetails = () => (
     <div className="PassengerDetails">
-      <Detail totalCount={1}></Detail>
+      <Detail totalCount={2}></Detail>
     </div>
   );
 

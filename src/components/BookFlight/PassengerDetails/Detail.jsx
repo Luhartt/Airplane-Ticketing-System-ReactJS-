@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import "./Detail.css";
 
 export default function Detail({ totalCount, number = 0 }) {
-  const SingleDetail = ({ number }) => (
-    <fieldset className="Detail">
+  const Detail = ({ number }) => (
+    <fieldset className={`Detail ${totalCount > 1 ? "MultipleDetails" : "SingleDetail"}`}>
       <p>Adult {number > 0 ? number : ""} Details</p>
       <label>
         First Name <br /> <input type="text" />
@@ -14,7 +14,7 @@ export default function Detail({ totalCount, number = 0 }) {
       </label>
       <label>
         Age <br />
-        <input type="number" min = {12}/>
+        <input type="number" min={12} />
       </label>
       <label>
         Birthdate <br />
@@ -22,8 +22,14 @@ export default function Detail({ totalCount, number = 0 }) {
       </label>
     </fieldset>
   );
+
+
   useEffect(() => {
     console.log(totalCount);
   }, []);
-  return <>{totalCount === 1 ? <SingleDetail number={number}/> : <p> Loading </p>}</>;
+  return (
+    <>
+      <Detail number={1}></Detail>
+    </>
+  );
 }
