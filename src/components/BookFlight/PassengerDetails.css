@@ -1,7 +1,29 @@
-.PassengerDetails{
-    display: flex;
-    justify-content: center;
-    align-items: center;   
-    height: 100%;
-    width: 100%;
+.PassengerDetails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+  overflow: scroll;
+  position: relative;
+  padding-inline: 5rem;
+}
+
+.PassengerDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+  
+  h1 {
+    font-family: Kantumruy Pro SemiBold;
+    font-size: 1.5rem;
+    padding-block: 5vh;
+  }
+}
+
+.Multiple {
+  display: grid !important;
+  grid-template-columns: repeat(2, 50%);
 }

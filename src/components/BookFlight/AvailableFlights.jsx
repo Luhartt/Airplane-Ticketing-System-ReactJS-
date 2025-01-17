@@ -72,9 +72,6 @@ export default function AvailableFlights() {
     const tripType = data.Type;
     const divScroll = useRef(null);
 
-    useEffect(() => {
-      divScroll.current.scrollTo(0, 0);
-    });
     const handleSelectFlight = (index, item) => {
       setSelected(index);
       setData({
@@ -113,6 +110,7 @@ export default function AvailableFlights() {
       } else {
         navigate("/book-flights/passenger-details");
       }
+      divScroll.current.scrollTo(0, 0);
     };
     return (
       <div className="AvailableFlightsWrapper" ref={divScroll}>
