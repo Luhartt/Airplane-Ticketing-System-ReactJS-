@@ -17,13 +17,23 @@ const Addon = () => {
   ];
 
   const SelectAddon = ({ index, addon }) => {
+    if (index === active){
+        setActive(-1)
+        setData((prevData) => {
+            const newData = { ...prevData };
+            delete newData.SelectedAddonIndex;
+            delete newData.SelectedAddon;
+            return newData;
+        });
+        return
+    }
     setActive(index);
     const selectedAddon = addon.toUpper();
     setData((prevdata) => ({
-        ...prevdata, ["SelectedAddonIndex"]: index
+        ...prevdata, "SelectedAddonIndex": index
     }))
     setData((prevdata) => ({
-        ...prevdata, ["SelectedAddon"]: selectedAddon
+        ...prevdata, "SelectedAddon": selectedAddon
     }))
   };
 
