@@ -1,10 +1,22 @@
 import { useData } from "../DataSetter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Detail.css";
 
 export default function GuestDetail({ type, number, counts }) {
-  const { data, setData } = useData();
+  const { setData } = useData();
   const [guestData, setGuestData] = useState({});
+
+  useEffect(() => {
+    let key = `${type} ${number}`;
+    key = key === "Passenger 0" ? "Adult 1" : key;
+
+    if (Object.keys(guestData).length > 0) {
+      setData((prevData) => ({
+        ...prevData,
+        [key]: guestData[`${type}${number}`],
+      }));
+    }
+  }, [guestData, type, number, setData]);
 
   const updateGuestData = (key, field, value) => {
     setGuestData((prevGuestData) => ({
@@ -14,7 +26,6 @@ export default function GuestDetail({ type, number, counts }) {
         [field]: value,
       },
     }));
-    setData({ ...data, [`${type} ${number}`]: guestData });
   };
 
   const key = `${type}${number}`;
@@ -58,16 +69,6 @@ export default function GuestDetail({ type, number, counts }) {
           />
         </label>
 
-        <label htmlFor={`${key}-age`}>
-          Age <br />
-          <input
-            id={`${key}-age`}
-            type="number"
-            defaultValue={currentGuestData.Age}
-            onChange={(e) => updateGuestData(key, "Age", e.target.value)}
-          />
-        </label>
-
         <label htmlFor={`${key}-birthdate`}>
           Birthdate <br />
           <input
@@ -75,6 +76,16 @@ export default function GuestDetail({ type, number, counts }) {
             type="date"
             defaultValue={currentGuestData.Birthdate}
             onChange={(e) => updateGuestData(key, "Birthdate", e.target.value)}
+          />
+        </label>
+
+        <label htmlFor={`${key}-age`}>
+          Age <br />
+          <input
+            id={`${key}-age`}
+            type="number"
+            defaultValue={currentGuestData.Age}
+            onChange={(e) => updateGuestData(key, "Age", e.target.value)}
           />
         </label>
 

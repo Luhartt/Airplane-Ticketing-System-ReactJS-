@@ -86,9 +86,9 @@ function PassengerCount(props) {
   const { data, setData } = useData();
 
   const passengerInputs = [
-    { icon: Adult, label: "Adult", id: "adultCount", keyName: "Adult"},
-    { icon: Children, label: "Children (2-11 Years Old)", id: "childrenCount", keyName: "Children" },
-    { icon: Infant, label: "Infant", id: "infantCount", keyName: "Infant" },
+    { icon: Adult, label: "Adult", id: "adultCount", keyName: "adultCount"},
+    { icon: Children, label: "Children (2-11 Years Old)", id: "ChildrenCount", keyName: "childrenCount" },
+    { icon: Infant, label: "Infant", id: "infantCount", keyName: "infantCount" },
   ];
 
   const handleTextInput = (e, keyName) => {

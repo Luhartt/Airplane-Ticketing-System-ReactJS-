@@ -46,7 +46,7 @@ export default function FlightDetails({ setType }) {
     setTimeout(() => {
       setAnimate(false);
     }, 400);
-    setData({Adult: 1});
+    setData({adultCount: 1});
   };
 
   const validate = (type) => {
