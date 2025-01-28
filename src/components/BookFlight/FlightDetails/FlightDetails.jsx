@@ -24,10 +24,10 @@ export default function FlightDetails({ setType }) {
       location.pathname === "/book-flights/round-trip"
     ) {
       setIsFlightDetails(true);
-    }
-    if (location.pathname === "/book-flights/departure-flight") {
+    }else{
       setIsFlightDetails(false);
     }
+
   }, [location.pathname]);
 
   const handleComponentChange = () => {

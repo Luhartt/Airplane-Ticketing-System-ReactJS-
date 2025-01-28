@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { DataProvider } from "./DataSetter";
 
 export default function BookFlights() {
-  const [type, setType] = useState();
+  const [Type, setType] = useState();
   const navigate = useNavigate();
   const location = useLocation();
 

@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route, useNavigate } from "react-router";
 import { useData } from "./DataSetter";
 import "./Addons.css";
 import { useState } from "react";
@@ -9,7 +9,8 @@ import { Buttons } from "../Button";
 
 const Addon = () => {
   const { data, setData } = useData();
-  const [active, setActive] = useState(data.SelectedAddonIndex || -1);
+  const [selectedAddonIndeces, setSelectedAddonIndeces] = useState(data.SelectedAddonIndex || []);
+  const navigate = useNavigate();
 
   const addons = [
     { image: FoodImage, Text: "FOOD" },
@@ -17,34 +18,33 @@ const Addon = () => {
     { image: TransportImage, Text: "TRANSPORT" },
   ];
 
-  const SelectAddon = (index, addonText) => {
-    if (index === active) {
-      setActive(-1);
-      setData((prevData) => {
-        const newData = { ...prevData };
-        delete newData.SelectedAddonIndex;
-        delete newData.SelectedAddon;
-        return newData;
+
+  const SelectAddon = (index ) => {
+    setSelectedAddonIndeces((prevSelected) => {
+        if (prevSelected.includes(index)) {
+          return prevSelected.filter((i) => i !== index);
+        } else {
+          return [...prevSelected, index];
+        }
       });
-      return;
-    }
-    setActive(index);
-    const selectedAddon = addonText.toLowerCase();
-    setData((prevdata) => ({
-      ...prevdata,
-      SelectedAddonIndex: index,
-    }));
-    setData((prevdata) => ({
-      ...prevdata,
-      SelectedAddon: selectedAddon,
-    }));
+
+    setData((prevData) => {
+      const newData = { ...prevData };
+      newData.SelectedAddonIndex = newData.SelectedAddonIndex || [];
+      if (newData.SelectedAddonIndex.includes(index)) {
+        newData.SelectedAddonIndex = newData.SelectedAddonIndex.filter((i) => i !== index);
+      } else {
+        newData.SelectedAddonIndex = [...newData.SelectedAddonIndex, index];
+      }
+      return newData;
+    });
   };
 
   const handleContinue = () => {
     console.log(data);
   }
   const handleBack = () => {
-    console.log(data);
+    navigate("/book-flights/passenger-details");
   }
 
   return (
@@ -53,7 +53,7 @@ const Addon = () => {
         {[
           addons.map((addon, index) => (
             <div
-              className={`addon ${active === index && "Active"}`}
+              className={`addon ${selectedAddonIndeces.includes(index) && "Active"}`}
               key={`addon-${index}`}
               onClick={() => SelectAddon(index, addon.Text)}
             >
