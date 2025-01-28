@@ -1,17 +1,10 @@
-import { useEffect, useState } from "react";
-import { useData } from "./../DataSetter";
+import { useData } from "../DataSetter";
+import { useState } from "react";
 import "./Detail.css";
 
-export default function Detail() {
-  const { data } = useData();
+export default function GuestDetail({ type, number, counts }) {
 
   const [guestData, setGuestData] = useState({});
-
-  const counts = {
-    Adult: data.Adult,
-    Children: data.Children,
-    Infant: data.Infant,
-  };
 
   const updateGuestData = (key, field, value) => {
     setGuestData((prevGuestData) => ({
@@ -23,17 +16,17 @@ export default function Detail() {
     }));
   };
 
-  const GuestDetail = ({ number, type }) => {
-    const key = `${type}${number}`;
-    const currentGuestData = guestData[key] || {
-      FirstName: "",
-      LastName: "",
-      Age: "",
-      Birthdate: "",
-      Discounted: false,
-    };
+  const key = `${type}${number}`;
+  const currentGuestData = guestData[key] || {
+    FirstName: "",
+    LastName: "",
+    Age: "",
+    Birthdate: "",
+    Discounted: false,
+  };
 
-    return (
+  return (
+    <>
       <fieldset
         className={`Detail ${
           Object.values(counts).reduce((sum, val) => sum + val, 0) > 1
@@ -49,7 +42,7 @@ export default function Detail() {
           <input
             id={`${key}-firstName`}
             type="text"
-            value={currentGuestData.FirstName}
+            defaultValue={currentGuestData.FirstName}
             onChange={(e) => updateGuestData(key, "FirstName", e.target.value)}
           />
         </label>
@@ -59,7 +52,7 @@ export default function Detail() {
           <input
             id={`${key}-lastName`}
             type="text"
-            value={currentGuestData.LastName}
+            defaultValue={currentGuestData.LastName}
             onChange={(e) => updateGuestData(key, "LastName", e.target.value)}
           />
         </label>
@@ -69,7 +62,7 @@ export default function Detail() {
           <input
             id={`${key}-age`}
             type="number"
-            value={currentGuestData.Age}
+            defaultValue={currentGuestData.Age}
             onChange={(e) => updateGuestData(key, "Age", e.target.value)}
           />
         </label>
@@ -79,7 +72,7 @@ export default function Detail() {
           <input
             id={`${key}-birthdate`}
             type="date"
-            value={currentGuestData.Birthdate}
+            defaultValue={currentGuestData.Birthdate}
             onChange={(e) => updateGuestData(key, "Birthdate", e.target.value)}
           />
         </label>
@@ -91,7 +84,7 @@ export default function Detail() {
           <input
             id={`${key}-discounted`}
             type="checkbox"
-            checked={currentGuestData.Discounted}
+            defaultChecked={currentGuestData.Discounted}
             onChange={(e) =>
               updateGuestData(key, "Discounted", e.target.checked)
             }
@@ -99,24 +92,6 @@ export default function Detail() {
           I am Senior or a PWD
         </label>
       </fieldset>
-    );
-  };
-
-  useEffect(() => {
-    console.log(guestData);
-  }, [guestData]);
-
-  return (
-    <>
-      {Object.entries(counts).map(([type, count]) =>
-        [...Array(count)].map((_, index) => (
-          <GuestDetail
-            key={`${type}-${index}`}
-            number={index + 1}
-            type={type}
-          />
-        ))
-      )}
     </>
   );
 }

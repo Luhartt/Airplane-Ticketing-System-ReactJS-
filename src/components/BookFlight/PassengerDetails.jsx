@@ -1,5 +1,5 @@
 import { Route, Routes, useNavigate } from "react-router";
-import Details from "./PassengerDetails/Detail";
+import GuestDetail from "./PassengerDetails/Detail";
 import { useData } from "./DataSetter";
 import "./PassengerDetails.css";
 import { Buttons } from "../Button";
@@ -19,13 +19,36 @@ export default function PassengerDetails() {
   const handleContinue = () => {
     console.log(data);
   };
-  const PassengerDetails = ({ totalCount, counts }) => (
+
+  const counts = {};
+  if (data.Adult !== undefined) {
+    counts.Adult = data.Adult;
+  }
+  if (data.Children !== undefined) {
+    counts.Children = data.Children;
+  }
+  if (data.Infant !== undefined) {
+    counts.Infant = data.Infant;
+  }
+
+  console.log(counts);
+
+  const PassengerDetails = ({ totalCount }) => (
     <div className="PassengerDetailsContainer">
       <h1>Passenger Details</h1>
       <div
         className={`PassengerDetails ${totalCount > 1 ? "Multiple" : "Single"}`}
       >
-        <Details></Details>
+        {Object.entries(counts).map(([type, count]) =>
+          [...Array(count)].map((_, index) => (
+            <GuestDetail
+              key={`${type}-${index}`}
+              number={totalCount > 1 ? index + 1 : 0}
+              type={totalCount > 1 ? type : "Passenger"}
+              counts={counts}
+            />
+          ))
+        )}
       </div>
       <div className="Buttons">
         <Buttons.BackButton
@@ -44,7 +67,11 @@ export default function PassengerDetails() {
     <Routes>
       <Route
         path="passenger-details"
-        element={<PassengerDetails />}
+        element={
+          <PassengerDetails
+            totalCount={Object.values(counts).reduce((a, b) => a + b, 0)}
+          />
+        }
       ></Route>
     </Routes>
   );
