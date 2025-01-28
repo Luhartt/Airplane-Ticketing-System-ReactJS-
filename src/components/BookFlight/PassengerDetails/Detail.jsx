@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./Detail.css";
 
 export default function GuestDetail({ type, number, counts }) {
-
+  const { data, setData } = useData();
   const [guestData, setGuestData] = useState({});
 
   const updateGuestData = (key, field, value) => {
@@ -14,6 +14,7 @@ export default function GuestDetail({ type, number, counts }) {
         [field]: value,
       },
     }));
+    setData({ ...data, [`${type} ${number}`]: guestData });
   };
 
   const key = `${type}${number}`;

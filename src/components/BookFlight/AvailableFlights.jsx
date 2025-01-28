@@ -2,7 +2,7 @@ import { Route, Routes, useNavigate, useLocation } from "react-router";
 import { useData } from "./DataSetter";
 import Flight from "../Flight";
 import "./AvailableFlights.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Buttons } from "../Button";
 
 export default function AvailableFlights() {
