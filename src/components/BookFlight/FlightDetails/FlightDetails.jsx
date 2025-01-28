@@ -24,10 +24,9 @@ export default function FlightDetails({ setType }) {
       location.pathname === "/book-flights/round-trip"
     ) {
       setIsFlightDetails(true);
-    }else{
+    } else {
       setIsFlightDetails(false);
     }
-
   }, [location.pathname]);
 
   const handleComponentChange = () => {
@@ -46,7 +45,7 @@ export default function FlightDetails({ setType }) {
     setTimeout(() => {
       setAnimate(false);
     }, 400);
-    setData({adultCount: 1});
+    setData({ adultCount: 1 });
   };
 
   const validate = (type) => {
@@ -71,7 +70,6 @@ export default function FlightDetails({ setType }) {
 
   const handleSubmit = (type) => {
     if (!validate(type)) {
-
       alert("Fill Up All Fields");
       return;
     }
@@ -79,9 +77,9 @@ export default function FlightDetails({ setType }) {
       ...data,
       Type: type,
     });
-      Object.entries(data).forEach(([key, value]) => {
-        console.log(`${key}: ${value}`);
-      });
+    Object.entries(data).forEach(([key, value]) => {
+      console.log(`${key}: ${value}`);
+    });
     setIsFlightDetails(false);
     navigate("/book-flights/departure-flight");
   };
@@ -132,3 +130,4 @@ export default function FlightDetails({ setType }) {
     </div>
   );
 }
+
