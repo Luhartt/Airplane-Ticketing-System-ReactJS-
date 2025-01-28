@@ -1,0 +1,22 @@
+.AddonsContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+
+    div{
+        padding: 3%;
+        height: 70%;
+        border: 2px solid black;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        font-family: Kantumruy Pro Bold;
+        font-size: 2rem;
+        border-radius: 20px;
+    }
+    .Active{
+        border-color: var(--indigo100);
+    }
+}
