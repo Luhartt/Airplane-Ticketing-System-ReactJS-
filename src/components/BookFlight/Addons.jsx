@@ -5,9 +5,10 @@ import { useState } from "react";
 import FoodImage from "../../Dependencies/Addon-Food.png";
 import BaggageImage from "../../Dependencies/Addon-Baggage.png";
 import TransportImage from "../../Dependencies/Addon-Transport.png";
+import { Buttons } from "../Button";
 
 const Addon = () => {
-  const {data, setData} = useData()
+  const { data, setData } = useData();
   const [active, setActive] = useState(data.SelectedAddonIndex || -1);
 
   const addons = [
@@ -16,41 +17,62 @@ const Addon = () => {
     { image: TransportImage, Text: "TRANSPORT" },
   ];
 
-  const SelectAddon = ({ index, addon }) => {
-    if (index === active){
-        setActive(-1)
-        setData((prevData) => {
-            const newData = { ...prevData };
-            delete newData.SelectedAddonIndex;
-            delete newData.SelectedAddon;
-            return newData;
-        });
-        return
+  const SelectAddon = (index, addonText) => {
+    if (index === active) {
+      setActive(-1);
+      setData((prevData) => {
+        const newData = { ...prevData };
+        delete newData.SelectedAddonIndex;
+        delete newData.SelectedAddon;
+        return newData;
+      });
+      return;
     }
     setActive(index);
-    const selectedAddon = addon.toUpper();
+    const selectedAddon = addonText.toLowerCase();
     setData((prevdata) => ({
-        ...prevdata, "SelectedAddonIndex": index
-    }))
+      ...prevdata,
+      SelectedAddonIndex: index,
+    }));
     setData((prevdata) => ({
-        ...prevdata, "SelectedAddon": selectedAddon
-    }))
+      ...prevdata,
+      SelectedAddon: selectedAddon,
+    }));
   };
+
+  const handleContinue = () => {
+    console.log(data);
+  }
+  const handleBack = () => {
+    console.log(data);
+  }
 
   return (
     <section className="AddonsContainer">
-      {[
-        addons.map((item, index) => (
-          <div
-            className={`addon ${active === index && "Active"}`}
-            key={`addon-${index}`}
-            onClick={() => SelectAddon(index, item.Text)}
-          >
-            <img src={item.image} alt="" key={`addon-image-${index}`} />
-            <p key={`addon-text-${index}`}>{item.Text}</p>
-          </div>
-        )),
-      ]}
+      <div className="AddonsWrapper">
+        {[
+          addons.map((addon, index) => (
+            <div
+              className={`addon ${active === index && "Active"}`}
+              key={`addon-${index}`}
+              onClick={() => SelectAddon(index, addon.Text)}
+            >
+              <img src={addon.image} alt="" key={`addon-image-${index}`} />
+              <p key={`addon-text-${index}`}>{addon.Text}</p>
+            </div>
+          )),
+        ]}
+      </div>
+      <div className="buttons">
+        <Buttons.BackButton
+          text={"Back"}
+          handleClick={handleBack}
+        ></Buttons.BackButton>
+        <Buttons.ContinueButton
+          text={"Continue"}
+          handleClick={handleContinue}
+        ></Buttons.ContinueButton>
+      </div>
     </section>
   );
 };

@@ -1,13 +1,19 @@
 .AddonsContainer{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    flex-direction: column;
     height: 100%;
-
-    div{
-        padding: 3%;
-        height: 70%;
-        border: 2px solid black;
+    .AddonsWrapper{
+        display: flex;
+        justify-content: space-evenly;
+        height: 85%;
+        width: 100%;
+        align-items: center;
+    }
+    .AddonsWrapper > div{
+        padding: 2vmax;
+        height: 80%;
+        border: 3px solid black;
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -16,7 +22,14 @@
         font-size: 2rem;
         border-radius: 20px;
     }
-    .Active{
+    .AddonsWrapper > .Active{
         border-color: var(--indigo100);
+    }
+
+    .buttons{
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        gap: 2rem;
     }
 }
