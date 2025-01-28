@@ -6,10 +6,68 @@ export default function GuestDetail({ type, number, counts }) {
   const { setData } = useData();
   const [guestData, setGuestData] = useState({});
 
-  useEffect(() => {
-    let key = `${type} ${number}`;
-    key = key === "Passenger 0" ? "Adult 1" : key;
+  const calculateAge = (birthdate) => {
+    if (!birthdate) return "";
+    const today = new Date();
+    const birthDate = new Date(birthdate);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
 
+
+    if (birthDate > today) {
+      alert("Birthdate cannot be a future date");
+      return -1;
+    }
+
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birthDate.getDate())
+    ) {
+      age--;
+    }
+    return age;
+  };
+
+  const updateGuestData = (key, field, value) => {
+    if (field === "Birthdate") {
+      const age = calculateAge(value);
+      if(age === -1){
+        return
+      }
+      if ((type === "Adult" || type === "Passenger") && age < 18) {
+        alert("Adult passengers must be 18 years or older");
+        return;
+      }
+      if (type === "Children" && (age < 2 || age > 11)) {
+        alert("Children passengers must be between 2-11 years old");
+        return;
+      }
+      if (type === "Infant" && (age < 0 || age > 1)) {
+        alert("Infant passengers must be under 2 years old");
+        return;
+      }
+
+      setGuestData((prevGuestData) => ({
+        ...prevGuestData,
+        [key]: {
+          ...prevGuestData[key],
+          [field]: value,
+          Age: age.toString(),
+        },
+      }));
+    } else {
+      setGuestData((prevGuestData) => ({
+        ...prevGuestData,
+        [key]: {
+          ...prevGuestData[key],
+          [field]: value,
+        },
+      }));
+    }
+  };
+
+  useEffect(() => {
+    const key = `${type} ${number}`;
     if (Object.keys(guestData).length > 0) {
       setData((prevData) => ({
         ...prevData,
@@ -17,16 +75,6 @@ export default function GuestDetail({ type, number, counts }) {
       }));
     }
   }, [guestData, type, number, setData]);
-
-  const updateGuestData = (key, field, value) => {
-    setGuestData((prevGuestData) => ({
-      ...prevGuestData,
-      [key]: {
-        ...prevGuestData[key],
-        [field]: value,
-      },
-    }));
-  };
 
   const key = `${type}${number}`;
   const currentGuestData = guestData[key] || {
@@ -58,7 +106,6 @@ export default function GuestDetail({ type, number, counts }) {
             onChange={(e) => updateGuestData(key, "FirstName", e.target.value)}
           />
         </label>
-
         <label htmlFor={`${key}-lastName`}>
           Last Name <br />
           <input
@@ -68,27 +115,25 @@ export default function GuestDetail({ type, number, counts }) {
             onChange={(e) => updateGuestData(key, "LastName", e.target.value)}
           />
         </label>
-
         <label htmlFor={`${key}-birthdate`}>
           Birthdate <br />
           <input
             id={`${key}-birthdate`}
             type="date"
-            defaultValue={currentGuestData.Birthdate}
+            value={currentGuestData.Birthdate || ""}
             onChange={(e) => updateGuestData(key, "Birthdate", e.target.value)}
           />
         </label>
-
         <label htmlFor={`${key}-age`}>
           Age <br />
           <input
             id={`${key}-age`}
-            type="number"
+            type="text"
+            placeholder="Input Birthdate"
             defaultValue={currentGuestData.Age}
-            onChange={(e) => updateGuestData(key, "Age", e.target.value)}
+            readOnly
           />
         </label>
-
         <label
           className={`check ${type !== "Adult" && "non-adult"}`}
           htmlFor={`${key}-discounted`}
