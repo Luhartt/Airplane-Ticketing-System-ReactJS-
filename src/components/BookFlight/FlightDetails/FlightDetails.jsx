@@ -27,7 +27,8 @@ export default function FlightDetails({ setType }) {
     } else {
       setIsFlightDetails(false);
     }
-  }, [location.pathname]);
+    setData({ adultCount: 1 });
+  }, [location.pathname, setData]);
 
   const handleComponentChange = () => {
     setAnimate(true);
@@ -130,4 +131,3 @@ export default function FlightDetails({ setType }) {
     </div>
   );
 }
-
