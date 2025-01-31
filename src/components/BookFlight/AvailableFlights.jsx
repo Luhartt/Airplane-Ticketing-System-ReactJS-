@@ -74,15 +74,18 @@ export default function AvailableFlights() {
 
     const handleSelectFlight = (index, item) => {
       setSelected(index);
-      setData({
-        ...data,
-        [`Selected ${
-          type === "Departure" ? "Departure Flight" : "Return Flight"
-        }`]: item.FlightID,
-      });
-      setData({
-        ...data,
-        [type === "Departure" ? "Departure Index" : "Return Index"]: index,
+      const flightType =
+        type === "Departure" ? "Departure Flight" : "Return Flight";
+
+      setData((prevData) => {
+        const newData = {
+          ...prevData,
+          [`Selected ${flightType}`]: item.FlightID,
+          [`Selected${flightType.replace(" ", "")}Index`]: index,
+          [`Selected${flightType.replace(" ", "")}Price`]: item.Price
+        };
+        console.log("After update:", newData);
+        return newData;
       });
     };
     const handleBack = () => {
