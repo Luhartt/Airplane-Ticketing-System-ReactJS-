@@ -15,20 +15,28 @@ export default function FlightDetails({ setType }) {
   );
 
   const { data, setData } = useData();
+
+  const isFlightTypeRoute = (pathname) => {
+    return (
+      pathname === "/book-flights/one-way" ||
+      pathname === "/book-flights/round-trip"
+    );
+  };
+
   useEffect(() => {
     setFlightType(
       location.pathname === "/book-flights/one-way" ? "One Way" : "Round Trip"
     );
-    if (
-      location.pathname === "/book-flights/one-way" ||
-      location.pathname === "/book-flights/round-trip"
-    ) {
+
+    if (isFlightTypeRoute(location.pathname)) {
       setIsFlightDetails(true);
+      if (!isFlightTypeRoute(location.state?.from || "")) {
+        setData({ adultCount: 1 });
+      }
     } else {
       setIsFlightDetails(false);
     }
-    // setData({ adultCount: 1 });  
-  }, [location.pathname, setData]);
+  }, [location.pathname, setData, location.state?.from]);
 
   const handleComponentChange = () => {
     setAnimate(true);
