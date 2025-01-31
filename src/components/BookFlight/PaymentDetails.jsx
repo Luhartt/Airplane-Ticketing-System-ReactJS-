@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "./style.css";
 
 const PaymentDetailsContents = () => {
-  const Type = "One Way";
+
   const MockData = {
     Type: "Round Trip",
     SelectedDepartureFlightPrice: 2500,
@@ -11,6 +11,7 @@ const PaymentDetailsContents = () => {
     adultCount: 2,
     childrenCount: 1,
     infantCount: 0,
+    SelectedAddonIndex: [0, 1],
     "Adult 1": {
       FirstName: "John",
       LastName: "Doe",
@@ -32,24 +33,76 @@ const PaymentDetailsContents = () => {
     },
   };
 
-  const countDiscountedPassengers = (data) => {
-    let discountedPassengers = 0;
-    for (const key in data) {
-      if (data[key].Discounted) {
-        discountedPassengers++;
+  const calculateTotalPrice = (acquiredData, flightPrice) => {
+    let seatMultiplier = 1;
+    if (acquiredData["Class Seat"] === "Business Economy") seatMultiplier = 1.5;
+    if (acquiredData["Class Seat"] === "Premium") seatMultiplier = 2;
+    if (acquiredData["Class Seat"] === "Premium Economy") seatMultiplier = 2.5;
+    if (acquiredData["Class Seat"] === "First Class") seatMultiplier = 3;
+
+    let costs = {
+      adultSubtotal: 0,
+      childrenSubtotal: 0,
+      infantSubtotal: 0,
+    };
+
+    for (const key in acquiredData) {
+      if (key.includes("Adult") || key.includes("Passenger")) {
+        let discounted = acquiredData[key].Discounted;
+        let typeMultiplier = 1;
+        costs.adultSubtotal = CalculatePrice(
+          discounted,
+          typeMultiplier,
+          seatMultiplier,
+          flightPrice
+        );
       }
+      if (key.includes("Children")) {
+        let typeMultiplier = 0.7;
+        costs.childrenSubtotal = CalculatePrice(
+          false,
+          typeMultiplier,
+          seatMultiplier,
+          flightPrice
+        );
+      }
+      if (key.includes("Infant")) {
+        let typeMultiplier = 0.5;
+        costs.infantSubtotal = CalculatePrice(
+          false,
+          typeMultiplier,
+          seatMultiplier,
+          flightPrice
+        );
+      }
+      return costs;
     }
-    return discountedPassengers
   };
 
-  const calculateTotalPrice = (acquiredData) => {
-    const { adultCount, childrenCount, infantCount, SelectedDepartureFlightPrice } = acquiredData;
-    const SelectedReturnFlightPrice = acquiredData.SelectedReturnFlightPrice || 0;
-    const numDiscountedPassengers = countDiscountedPassengers(acquiredData);
-    const childrenMultiplier = 0.7
-    const infantMultiplier = 0.3
-    
+  const CalculatePrice = (
+    Discounted,
+    typeMultiplier,
+    seatMultiplier,
+    flightPrice
+  ) => {
+    let basePrice = flightPrice * typeMultiplier * seatMultiplier;
+    let subTotal = 0;
+    if (Discounted) {
+      let discount = basePrice * 0.2;
+      subTotal = basePrice - discount;
+    } else {
+      let tax = basePrice * 0.12;
+      subTotal = basePrice + tax;
+    }
+    return subTotal;
+  };
+
+  let departureCosts = calculateTotalPrice(MockData, MockData.SelectedDepartureFlightPrice);
+  if(MockData.Type === "Round Trip") {
+    let returnCosts = calculateTotalPrice(MockData, MockData.SelectedReturnFlightPrice);
   }
+
+
 };
 
 export default function PaymentDetails() {
