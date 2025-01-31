@@ -32,7 +32,7 @@ const PassengerDetailsContent = ({ totalCount, counts }) => {
       alert("Please fill in all required fields for all passengers");
       return;
     }
-
+    console.log(data);
     navigate("/book-flights/addons");
   };
 

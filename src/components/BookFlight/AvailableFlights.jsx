@@ -80,10 +80,10 @@ export default function AvailableFlights() {
           type === "Departure" ? "Departure Flight" : "Return Flight"
         }`]: item.FlightID,
       });
-      // setData({
-      //   ...data,
-      //   [type === "Departure" ? "Departure Index" : "Return Index"]: index,
-      // });
+      setData({
+        ...data,
+        [type === "Departure" ? "Departure Index" : "Return Index"]: index,
+      });
     };
     const handleBack = () => {
       if (type === "Return") {
@@ -99,10 +99,8 @@ export default function AvailableFlights() {
       }
     };
     const handleContinue = () => {
-      Object.entries(data).forEach(([key, value]) => {
-        console.log(`${key}: ${value}`);
-      });
-      
+      console.log(data);
+
       if (
         tripType === "Round Trip" &&
         location.pathname === "/book-flights/departure-flight"

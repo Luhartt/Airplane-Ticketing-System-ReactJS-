@@ -27,7 +27,7 @@ export default function FlightDetails({ setType }) {
     } else {
       setIsFlightDetails(false);
     }
-    setData({ adultCount: 1 });
+    // setData({ adultCount: 1 });  
   }, [location.pathname, setData]);
 
   const handleComponentChange = () => {
@@ -78,9 +78,7 @@ export default function FlightDetails({ setType }) {
       ...data,
       Type: type,
     });
-    Object.entries(data).forEach(([key, value]) => {
-      console.log(`${key}: ${value}`);
-    });
+    console.log(data);
     setIsFlightDetails(false);
     navigate("/book-flights/departure-flight");
   };
