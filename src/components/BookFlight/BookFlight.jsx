@@ -6,6 +6,7 @@ import Addons from "./Addons";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { DataProvider } from "./DataSetter";
+import PaymentDetails from "./PaymentDetails";
 
 export default function BookFlights() {
   const [Type, setType] = useState();
@@ -25,6 +26,7 @@ export default function BookFlights() {
         <AvailableFlights></AvailableFlights>
         <PassengerDetails></PassengerDetails>
         <Addons></Addons>
+        <PaymentDetails></PaymentDetails>
       </DataProvider>
     </section>
   );

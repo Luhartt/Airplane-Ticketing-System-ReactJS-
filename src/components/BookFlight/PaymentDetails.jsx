@@ -1,72 +1,7 @@
-import { navigate, Routes, Route, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import { transformFlight } from "../../Dependencies/getFlight";
 import Flights from "../FlightsView";
-import "./style.css";
-
-const calculateTotalPrice = (acquiredData, flightPrice) => {
-  let seatMultiplier = 1;
-  if (acquiredData["Class Seat"] === "Business Economy") seatMultiplier = 1.5;
-  if (acquiredData["Class Seat"] === "Premium") seatMultiplier = 2;
-  if (acquiredData["Class Seat"] === "Premium Economy") seatMultiplier = 2.5;
-  if (acquiredData["Class Seat"] === "First Class") seatMultiplier = 3;
-
-  let costs = {
-    adultSubtotal: 0,
-    childrenSubtotal: 0,
-    infantSubtotal: 0,
-  };
-
-  for (const key in acquiredData) {
-    if (key.includes("Adult") || key.includes("Passenger")) {
-      let discounted = acquiredData[key].Discounted;
-      let typeMultiplier = 1;
-      costs.adultSubtotal = CalculatePrice(
-        discounted,
-        typeMultiplier,
-        seatMultiplier,
-        flightPrice
-      );
-    }
-    if (key.includes("Children")) {
-      let typeMultiplier = 0.7;
-      costs.childrenSubtotal = CalculatePrice(
-        false,
-        typeMultiplier,
-        seatMultiplier,
-        flightPrice
-      );
-    }
-    if (key.includes("Infant")) {
-      let typeMultiplier = 0.5;
-      costs.infantSubtotal = CalculatePrice(
-        false,
-        typeMultiplier,
-        seatMultiplier,
-        flightPrice
-      );
-    }
-    return costs;
-  }
-};
-
-const CalculatePrice = (
-  Discounted,
-  typeMultiplier,
-  seatMultiplier,
-  flightPrice
-) => {
-  let basePrice = flightPrice * typeMultiplier * seatMultiplier;
-  let subTotal = 0;
-  if (Discounted) {
-    let discount = basePrice * 0.2;
-    subTotal = basePrice - discount;
-  } else {
-    let tax = basePrice * 0.12;
-    subTotal = basePrice + tax;
-  }
-  return subTotal;
-};
+import "./PaymentDetails.css";
 
 const data = {
   Type: "Round Trip",
@@ -120,30 +55,170 @@ const sampleReturnFlight = {
   ArrivalDate: "2021-08-01T10:00:00",
 };
 
-const PaymentDetailsContents = (data, type) => {
-  let departureCosts = calculateTotalPrice(
+const calculateTotalPrice = (acquiredData, flightPrice) => {
+  if (!acquiredData || !flightPrice) return null;
+
+  let seatMultiplier = 1;
+  switch (acquiredData["Class Seat"]) {
+    case "Business Economy":
+      seatMultiplier = 1.5;
+      break;
+    case "Premium":
+      seatMultiplier = 2;
+      break;
+    case "Premium Economy":
+      seatMultiplier = 2.5;
+      break;
+    case "First Class":
+      seatMultiplier = 3;
+      break;
+    default:
+      seatMultiplier = 1;
+  }
+
+  const costs = {
+    adultSubtotal: 0,
+    childrenSubtotal: 0,
+    infantSubtotal: 0,
+  };
+
+  // Calculate adult costs
+  for (let i = 1; i <= acquiredData.adultCount; i++) {
+    const adult = acquiredData[`Adult ${i}`];
+    if (adult) {
+      const discounted = adult.Discounted || false;
+      costs.adultSubtotal += CalculatePrice(
+        discounted,
+        1,
+        seatMultiplier,
+        flightPrice
+      );
+    }
+  }
+
+  // Calculate children costs
+  for (let i = 1; i <= acquiredData.childrenCount; i++) {
+    const child = acquiredData[`Children ${i}`];
+    if (child) {
+      costs.childrenSubtotal += CalculatePrice(
+        false,
+        0.7,
+        seatMultiplier,
+        flightPrice
+      );
+    }
+  }
+
+  // Calculate infant costs
+  for (let i = 1; i <= acquiredData.infantCount; i++) {
+    const infant = acquiredData[`Infant ${i}`];
+    if (infant) {
+      costs.infantSubtotal += CalculatePrice(
+        false,
+        0.5,
+        seatMultiplier,
+        flightPrice
+      );
+    }
+  }
+
+  return costs;
+};
+
+const CalculatePrice = (
+  Discounted,
+  typeMultiplier,
+  seatMultiplier,
+  flightPrice
+) => {
+  const basePrice = flightPrice * typeMultiplier * seatMultiplier;
+  
+  if (Discounted) {
+    const discount = basePrice * 0.2;
+    return basePrice - discount;
+  } else {
+    const tax = basePrice * 0.12;
+    return basePrice + tax;
+  }
+};
+
+const Details = ({ data, costs, flight }) => {
+  if (!data || !costs || !flight) {
+    return <div>Loading...</div>;
+  }
+
+  const counts = [
+    {
+      type: "Adult",
+      count: data.adultCount,
+      costs: costs.adultSubtotal,
+    },
+    {
+      type: "Children",
+      count: data.childrenCount,
+      costs: costs.childrenSubtotal,
+    },
+    {
+      type: "Infant",
+      count: data.infantCount,
+      costs: costs.infantSubtotal,
+    },
+  ];
+
+  return (
+    <section className="payment-details">
+      <Flights FlightData={flight} />
+      <p className="seat-class">Seat Class: {data["Class Seat"]}</p>
+      <p className="plane-number">Plane Number: {flight.AirplaneNumber}</p>
+      <div className="passengers">
+        {counts.map((count, index) => (
+          <div key={index} className="passenger">
+            <p>{count.type}: {count.count}</p>
+            <p>Cost: ${count.costs.toFixed(2)}</p>
+          </div>
+        ))}
+      </div>
+      <p className="subtotal">Subtotal</p>
+      <p className="subtotal-price">
+        ${Object.values(costs).reduce((acc, curr) => acc + curr, 0).toFixed(2)}
+      </p>
+    </section>
+  );
+};
+
+const PaymentDetailsContents = () => {
+  const departureCosts = calculateTotalPrice(
     data,
     data.SelectedDepartureFlightPrice
   );
-  if (data.Type === "Round Trip") {
-    let returnCosts = calculateTotalPrice(data, data.SelectedReturnFlightPrice);
+  const departureFlight = transformFlight(sampleDepartureFlight);
+  
+  const returnCosts = data.Type === "Round Trip"
+    ? calculateTotalPrice(data, data.SelectedReturnFlightPrice)
+    : null;
+  const returnFlight = data.Type === "Round Trip"
+    ? transformFlight(sampleReturnFlight)
+    : null;
+
+  if (!departureFlight || !departureCosts) {
+    return <div>Error loading flight details</div>;
   }
 
-  let flight = transformFlight(sampleDepartureFlight);
-  let counts = [
-    { type: "Adult", count: data.adultCount, costs: departureCosts.adultSubtotal },
-    { type: "Children", count: data.childrenCount, costs: departureCosts.childrenSubtotal },
-    { type: "Infant", count: data.infantCount, costs: departureCosts.infantSubtotal },
-  ]
   return (
-    <section className="payment-details">
-      <Flights FlightData={flight}></Flights>
-      <p className="seat-class">Seat Class: {data.Seat}</p>
-      <p className="plane-number">Plane Number: {flight.AirplaneNumber}</p>
-      <div className="passengers">
-
-      </div>
-    </section>
+    <div className="payment-details-container">
+      <Details
+        data={data}
+        flight={departureFlight}
+        costs={departureCosts}
+      />
+      {data.Type === "Round Trip" && returnFlight && returnCosts && (
+        <Details
+          data={data}
+          flight={returnFlight}
+          costs={returnCosts}
+        />
+      )}
+    </div>
   );
 };
 
@@ -152,8 +227,8 @@ export default function PaymentDetails() {
     <Routes>
       <Route
         path="payment-details"
-        element={<PaymentDetailsContents></PaymentDetailsContents>}
-      ></Route>
+        element={<PaymentDetailsContents />}
+      />
     </Routes>
   );
 }
