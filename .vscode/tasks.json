@@ -1,0 +1,13 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Workspace Startup",
+            "type": "shell", 
+            "command": "npm start",
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        }
+    ]
+}
