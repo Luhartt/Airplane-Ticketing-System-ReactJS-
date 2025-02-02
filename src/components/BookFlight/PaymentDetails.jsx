@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { transformFlight } from "../../Dependencies/getFlight";
-import Flights from "../FlightsView";
+import Flight from "../Flight";
+import { Buttons } from "../Button";
 import "./PaymentDetails.css";
 
 const data = {
@@ -132,7 +133,7 @@ const CalculatePrice = (
   flightPrice
 ) => {
   const basePrice = flightPrice * typeMultiplier * seatMultiplier;
-  
+
   if (Discounted) {
     const discount = basePrice * 0.2;
     return basePrice - discount;
@@ -167,21 +168,33 @@ const Details = ({ data, costs, flight }) => {
 
   return (
     <section className="payment-details">
-      <Flights FlightData={flight} />
+      <Flight FlightData={flight.FlightData} />
       <p className="seat-class">Seat Class: {data["Class Seat"]}</p>
       <p className="plane-number">Plane Number: {flight.AirplaneNumber}</p>
       <div className="passengers">
-        {counts.map((count, index) => (
-          <div key={index} className="passenger">
-            <p>{count.type}: {count.count}</p>
-            <p>Cost: ${count.costs.toFixed(2)}</p>
-          </div>
-        ))}
+        {counts.map(
+          (count, index) =>
+            count.count > 0 && (
+              <div key={index} className="passenger">
+                <p>
+                  {count.type}: {count.count}
+                </p>
+                <p>${count.costs.toFixed(2)}</p>
+              </div>
+            )
+        )}
       </div>
-      <p className="subtotal">Subtotal</p>
-      <p className="subtotal-price">
-        ${Object.values(costs).reduce((acc, curr) => acc + curr, 0).toFixed(2)}
-      </p>
+
+      <div className="subtotal-container">
+        <p className="subtotal">Subtotal</p>
+        <p className="subtotal-price">
+          $
+          {Object.values(costs)
+            .reduce((acc, curr) => acc + curr, 0)
+            .toFixed(2)}
+        </p>
+      </div>
+      <button>View</button>
     </section>
   );
 };
@@ -192,32 +205,48 @@ const PaymentDetailsContents = () => {
     data.SelectedDepartureFlightPrice
   );
   const departureFlight = transformFlight(sampleDepartureFlight);
-  
-  const returnCosts = data.Type === "Round Trip"
-    ? calculateTotalPrice(data, data.SelectedReturnFlightPrice)
-    : null;
-  const returnFlight = data.Type === "Round Trip"
-    ? transformFlight(sampleReturnFlight)
-    : null;
+
+  const returnCosts =
+    data.Type === "Round Trip"
+      ? calculateTotalPrice(data, data.SelectedReturnFlightPrice)
+      : null;
+  const returnFlight =
+    data.Type === "Round Trip" ? transformFlight(sampleReturnFlight) : null;
 
   if (!departureFlight || !departureCosts) {
     return <div>Error loading flight details</div>;
   }
 
+  const handleContinue = () => {
+    console.log("Continue");
+  };
+
+  const handleBack = () => {
+    console.log("Back");
+  };
+
   return (
     <div className="payment-details-container">
-      <Details
-        data={data}
-        flight={departureFlight}
-        costs={departureCosts}
-      />
-      {data.Type === "Round Trip" && returnFlight && returnCosts && (
-        <Details
-          data={data}
-          flight={returnFlight}
-          costs={returnCosts}
-        />
-      )}
+      <h1>Payment</h1>
+      <main>
+        <Details data={data} flight={departureFlight} costs={departureCosts} />
+        {data.Type === "Round Trip" && returnFlight && returnCosts && (
+          <>
+            <hr />
+            <Details data={data} flight={returnFlight} costs={returnCosts} />
+          </>
+        )}
+      </main>
+      <div className="Buttons">
+        <Buttons.BackButton
+          text={"Back"}
+          handleClick={handleBack}
+        ></Buttons.BackButton>
+        <Buttons.ContinueButton
+          text={"Continue"}
+          handleClick={handleContinue}
+        ></Buttons.ContinueButton>
+      </div>
     </div>
   );
 };
@@ -225,10 +254,7 @@ const PaymentDetailsContents = () => {
 export default function PaymentDetails() {
   return (
     <Routes>
-      <Route
-        path="payment-details"
-        element={<PaymentDetailsContents />}
-      />
+      <Route path="payment-details" element={<PaymentDetailsContents />} />
     </Routes>
   );
 }
