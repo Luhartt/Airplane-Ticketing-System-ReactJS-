@@ -1,0 +1,68 @@
+div.payment-details-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    >h1{
+        font-family: Kantumruy Pro Bold;
+        font-size: 2rem;
+        margin-top: 2rem;
+    }
+    main{
+        margin: 2.5rem;
+        overflow: scroll;
+        width: 50%;
+        height: 60%;
+
+        hr{
+            border: 1px solid darkgray;
+            margin-block: 5rem 2rem;
+        }
+    }
+    section.payment-details{
+        width: 100%;
+        font-family: Kantumruy Pro SemiBold;
+        margin-bottom: 3rem;
+        font-size: 1.2rem;
+
+        div.Flight{
+            width: 100% !important;
+            margin-bottom: 0.5rem;
+            h1{
+                font-size: 2rem;
+            }
+        }
+        .seat-class{
+            color: darkgray;
+        }
+        .plane-number{
+            margin-bottom: 0.5rem;
+
+        }
+
+        div.passenger{
+            padding-left: 1rem;
+            display: flex;
+            justify-content: space-between;
+            color: darkgray;
+        }
+        div.subtotal-container{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+        }
+        button{
+            float: right;
+            padding: 0.3rem 1.5rem;
+            background-color: var(--indigo85);
+            border: none;
+            outline: none;
+            color: white;
+            font-family: Kantumruy Pro SemiBold;
+            margin-top: 0.5rem;
+            cursor: pointer;
+        }
+    }
+}
