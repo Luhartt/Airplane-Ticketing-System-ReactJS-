@@ -206,6 +206,12 @@ const PaymentDetailsContents = () => {
   );
 
   const navigate = useNavigate();
+  const SelectedAddons = data.SelectedAddonIndex.sort();
+  const Addons = {
+    0: ["Food", 1000],
+    1: ["Baggage", 2000],
+    2: ["Transport", 3000],
+  };
 
   const departureFlight = transformFlight(sampleDepartureFlight);
 
@@ -238,6 +244,17 @@ const PaymentDetailsContents = () => {
             <hr />
             <Details data={data} flight={returnFlight} costs={returnCosts} />
           </>
+        )}
+        {data.SelectedAddonIndex.length > 0 && (
+          <div className="addons">
+            <p className="addons-title">Addons</p>
+            {SelectedAddons.map((item, index) => (
+              <div className="addon">
+                <p>{Addons[item][0]}</p>
+                <p>{Addons[item][1]}</p>
+              </div>
+            ))}
+          </div>
         )}
       </main>
       <div className="Buttons">
