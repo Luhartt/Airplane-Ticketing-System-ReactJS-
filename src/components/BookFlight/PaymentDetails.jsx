@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { transformFlight } from "../../Dependencies/getFlight";
 import Flight from "../Flight";
 import { Buttons } from "../Button";
@@ -204,6 +204,9 @@ const PaymentDetailsContents = () => {
     data,
     data.SelectedDepartureFlightPrice
   );
+
+  const navigate = useNavigate();
+
   const departureFlight = transformFlight(sampleDepartureFlight);
 
   const returnCosts =
@@ -222,7 +225,7 @@ const PaymentDetailsContents = () => {
   };
 
   const handleBack = () => {
-    console.log("Back");
+    navigate("/book-flights/addons");
   };
 
   return (

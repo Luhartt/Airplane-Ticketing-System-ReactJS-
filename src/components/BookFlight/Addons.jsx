@@ -42,6 +42,7 @@ const Addon = () => {
 
   const handleContinue = () => {
     console.log(data);
+    navigate("/book-flights/payment-details");
   }
   const handleBack = () => {
     navigate("/book-flights/passenger-details");

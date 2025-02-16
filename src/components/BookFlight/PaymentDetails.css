@@ -13,11 +13,11 @@ div.payment-details-container{
     main{
         margin: 2.5rem;
         overflow: scroll;
-        width: 50%;
-        height: 60%;
+        width: 60%;
+        height: 70%;
         margin-left: 5rem;
-        padding-right: 2.5rem;
-
+        padding: 2.5rem;
+        border-radius: 10px;
         hr{
             border: 1px solid darkgray;
             margin-block: 5rem 2rem;
