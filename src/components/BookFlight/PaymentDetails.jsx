@@ -234,6 +234,11 @@ const PaymentDetailsContents = () => {
     navigate("/book-flights/addons");
   };
 
+  const totalAddons = data.SelectedAddonIndex.reduce(
+    (sum, item) => sum + Addons[item][1], 
+    0
+  );
+  
   return (
     <div className="payment-details-container">
       <h1>Payment</h1>
@@ -245,15 +250,25 @@ const PaymentDetailsContents = () => {
             <Details data={data} flight={returnFlight} costs={returnCosts} />
           </>
         )}
+        <hr />
         {data.SelectedAddonIndex.length > 0 && (
           <div className="addons">
             <p className="addons-title">Addons</p>
             {SelectedAddons.map((item, index) => (
               <div className="addon">
                 <p>{Addons[item][0]}</p>
-                <p>{Addons[item][1]}</p>
+                <p>${Addons[item][1]}.00</p>
               </div>
             ))}
+            <p className="apply">(Applied to all Adults)</p>
+            <div className="subtotal-container">
+              <p className="subtotal">
+                Subtotal
+              </p>
+              <p className="subtotal-price">
+                ${totalAddons}.00
+              </p>
+            </div>
           </div>
         )}
       </main>
